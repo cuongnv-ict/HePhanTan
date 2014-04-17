@@ -58,31 +58,30 @@ public class Packet {
      * Mã hóa thông điệp tọa độ các tàu khi khởi tạo
      */
 
-    public String setMsg(Point begin[], Point end[]) {
+    public String setMsg(Point begin[], int[] arrImage) {
         this.msg = String.valueOf(KHOITAO);
         for (int i = 0; i < 5; i++) {
-            this.msg += ":" + String.valueOf(begin[i].x) + "-" + String.valueOf(begin[i].y);
-            this.msg += ":" + String.valueOf(end[i].x) + "-" + String.valueOf(end[i].y);
+            this.msg += ":" + String.valueOf(begin[i].x) + "-" + String.valueOf(begin[i].y) + "-" + arrImage[i];
         }
         return this.msg;
     }
 
-    public void getAllPoint(Point begin[], Point end[], String msg) {
+    public void getAllPoint(Point begin[], int arrImage[], String msg) {
         String arr[] = msg.split(":", 2);
         String temp[];
         arr = arr[1].split(":");
-        for (int i = 0; i < arr.length; i += 2) {
+        for (int i = 0; i < arr.length; i++) {
             temp = arr[i].split("-");
-            begin[i / 2] = new Point(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
-            temp = arr[i + 1].split("-");
-            end[i / 2] = new Point(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
+            begin[i] = new Point(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
+            arrImage[i] = Integer.parseInt(temp[2]);
         }
     }
     /*
      * Mã hóa thông điệp đóng kết nối
      */
+
     public String setClose(String msg) {
         this.msg = String.valueOf(TINNHAN) + ":" + msg;
         return this.msg;
-    } 
+    }
 }

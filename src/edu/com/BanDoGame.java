@@ -4,9 +4,9 @@
  */
 package edu.com;
 
-import com.sun.security.ntlm.Client;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
@@ -25,21 +25,21 @@ public class BanDoGame extends javax.swing.JPanel {
     /*
      * Khởi tạo file ảnh
      */
-    protected ImageIcon tau1[];
-    protected ImageIcon tau2[];
-    protected ImageIcon tau3[];
-    protected ImageIcon tau4[];
-    protected ImageIcon tau5[];
-    protected ImageIcon no1[];
-    protected ImageIcon no2[];
-    protected ImageIcon no3[];
-    protected ImageIcon no4[];
-    protected ImageIcon no5[];
-    protected ImageIcon anhnen;
+    private ImageIcon tau1[];
+    private ImageIcon tau2[];
+    private ImageIcon tau3[];
+    private ImageIcon tau4[];
+    private ImageIcon tau5[];
+    private ImageIcon no1[];
+    private ImageIcon no2[];
+    private ImageIcon no3[];
+    private ImageIcon no4[];
+    private ImageIcon no5[];
+    private ImageIcon anhnen;
     /*
      * Khởi tạo vị trí tàu và hướng tàu
      */
-    protected Point begin[];
+    private Point begin[];
     private int arrImage[];//Giá trị 0 là đứng,1 là nằm ngang
     /*
      * Sử dụng để căn lề tàu trên bản đồ
@@ -57,6 +57,11 @@ public class BanDoGame extends javax.swing.JPanel {
     private int status;//Kiem tra xem chuong trinh o trang thai nao;
     private int serial;
     private int[] local;//Can le toa do di chuyen
+    /*
+     * Luu toa do doi thu
+     */
+    private Point rival[];
+    private int arrRival[];
 
     public BanDoGame() {
         initComponents();
@@ -95,10 +100,10 @@ public class BanDoGame extends javax.swing.JPanel {
         length[3] = 3;
         length[4] = 4;
         local[0] = 125;
-        local[0] = 50;
-        local[0] = 125;
-        local[0] = 125;
-        local[0] = 125;
+        local[1] = 50;
+        local[2] = 75;
+        local[3] = 75;
+        local[4] = 100;
         tau1[0] = new ImageIcon(this.getClass().getResource("image/TauSanBay2.png"));
         tau1[1] = new ImageIcon(this.getClass().getResource("image/TauSanBay3.png"));
         tau2[0] = new ImageIcon(this.getClass().getResource("image/tauChien2.png"));
@@ -109,18 +114,22 @@ public class BanDoGame extends javax.swing.JPanel {
         tau4[1] = new ImageIcon(this.getClass().getResource("image/tauNgu3.png"));
         tau5[0] = new ImageIcon(this.getClass().getResource("image/tauThuyChien1.png"));
         tau5[1] = new ImageIcon(this.getClass().getResource("image/tauThuyChien2.png"));
-//        no1[0] = new ImageIcon(this.getClass().getResource("image/TauSanBay2-no.png"));
-//        no1[1] = new ImageIcon(this.getClass().getResource("image/tau1.png"));
-//        no2[0] = new ImageIcon(this.getClass().getResource("image/tau1.png"));
-//        no2[1] = new ImageIcon(this.getClass().getResource("image/tau1.png"));
-//        no3[0] = new ImageIcon(this.getClass().getResource("image/tau1.png"));
-//        no3[1] = new ImageIcon(this.getClass().getResource("image/tau1.png"));
-//        no4[0] = new ImageIcon(this.getClass().getResource("image/tau1.png"));
-//        no4[1] = new ImageIcon(this.getClass().getResource("image/tau1.png"));
+        no1[0] = new ImageIcon(this.getClass().getResource("image/TauSanBay2-no.png"));
+        no1[1] = new ImageIcon(this.getClass().getResource("image/TauSanBay3-no.png"));
+        no2[0] = new ImageIcon(this.getClass().getResource("image/tauChien2-no.png"));
+        no2[1] = new ImageIcon(this.getClass().getResource("image/tauChien3-no.png"));
+        no3[0] = new ImageIcon(this.getClass().getResource("image/tauNgam2-no.png"));
+        no3[1] = new ImageIcon(this.getClass().getResource("image/tauNgam3-no.png"));
+        no4[0] = new ImageIcon(this.getClass().getResource("image/tauNgu2-no.png"));
+        no4[1] = new ImageIcon(this.getClass().getResource("image/tauNgu3-no.png"));
+        no4[0] = new ImageIcon(this.getClass().getResource("image/tauThuyChien1-no.png"));
+        no4[1] = new ImageIcon(this.getClass().getResource("image/tauThuyChien2-no.png"));
         anhnen = new ImageIcon(this.getClass().getResource("image/song cuon.png"));
         status = THIETLAP;
-        isClient = false;
+        isClient = true;
         serial = -1;
+        rival = null;
+        arrRival = null;
         this.setDefaultPoint();
     }
 
@@ -141,14 +150,8 @@ public class BanDoGame extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                formMouseReleased(evt);
-            }
         });
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                formMouseMoved(evt);
-            }
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
             }
@@ -167,11 +170,19 @@ public class BanDoGame extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void setDefaultPoint() {
-        begin[0] = new Point(10, 10);
-        begin[1] = new Point(185, 60);
-        begin[2] = new Point(110, 85);
-        begin[3] = new Point(160, 160);
-        begin[4] = new Point(85, 210);
+        if (isClient) {
+            begin[0] = new Point(300, 10);
+            begin[1] = new Point(475, 60);
+            begin[2] = new Point(400, 85);
+            begin[3] = new Point(450, 160);
+            begin[4] = new Point(375, 210);
+        } else {
+            begin[0] = new Point(10, 10);
+            begin[1] = new Point(185, 60);
+            begin[2] = new Point(110, 85);
+            begin[3] = new Point(160, 160);
+            begin[4] = new Point(85, 210);
+        }
         arrImage[0] = 0;
         arrImage[1] = 1;
         arrImage[2] = 0;
@@ -181,23 +192,44 @@ public class BanDoGame extends javax.swing.JPanel {
     }
 
     public boolean getNumber(Point point, int number) {
-        if (arrImage[number] == 0) {
-            if ((((point.x - 10) / 25) == ((begin[number].x - 10) / 25))
-                    && (((point.y - 10) / 25) >= ((begin[number].y - 10) / 25))
-                    && (((point.y - 10) / 25) < ((begin[number].y - 10) / 25) + length[number])) {
-                return true;
+        if (!isClient) {
+            if (arrImage[number] == 0) {
+                if ((((point.x - 10) / 25) == ((begin[number].x - 10) / 25))
+                        && (((point.y - 10) / 25) >= ((begin[number].y - 10) / 25))
+                        && (((point.y - 10) / 25) < ((begin[number].y - 10) / 25) + length[number])) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
-                return false;
+                if ((((point.y - 10) / 25) == ((begin[number].y - 10) / 25))
+                        && (((point.x - 10) / 25) >= ((begin[number].x - 10) / 25))
+                        && (((point.x - 10) / 25) < ((begin[number].x - 10) / 25) + length[number])) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         } else {
-            if ((((point.y - 10) / 25) == ((begin[number].y - 10) / 25))
-                    && (((point.x - 10) / 25) >= ((begin[number].x - 10) / 25))
-                    && (((point.x - 10) / 25) < ((begin[number].x - 10) / 25) + length[number])) {
-                return true;
+            if (arrImage[number] == 0) {
+                if ((((point.x - 300) / 25) == ((begin[number].x - 300) / 25))
+                        && (((point.y - 10) / 25) >= ((begin[number].y - 10) / 25))
+                        && (((point.y - 10) / 25) < ((begin[number].y - 10) / 25) + length[number])) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
-                return false;
+                if ((((point.y - 10) / 25) == ((begin[number].y - 10) / 25))
+                        && (((point.x - 300) / 25) >= ((begin[number].x - 300) / 25))
+                        && (((point.x - 300) / 25) < ((begin[number].x - 300) / 25) + length[number])) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
+
     }
 
     public void getLocal(int number) {
@@ -205,33 +237,45 @@ public class BanDoGame extends javax.swing.JPanel {
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount() == 2 && serial != -1) {
-            arrImage[serial] = Math.abs(1 - arrImage[serial]);
+            this.changeImage();
+        }
+
+        if (SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 2) {
+            if (evt.getX() > 10 && evt.getX() < 260 && evt.getY() > 10 && evt.getX() < 260) {
+                Point point = new Point();
+                point.x = (evt.getY() - 10) / 25;
+                point.y = (evt.getX() - 10) / 25;
+                System.out.println(point.x + "-" + point.y);
+            } else if (evt.getX() > 300 && evt.getX() < 550 && evt.getY() > 10 && evt.getY() < 260) {
+                Point point = new Point();
+                point.x = (evt.getY() - 10) / 25;
+                point.y = (evt.getX() - 300) / 25;
+                System.out.println(point.x + "-" + point.y);
+            }
         }
         repaint();
-//        Point point = new Point(evt.getX(), evt.getY());
-//        for (int i = 0; i < 5; i++) {
-//            if (getNumber(point, i)) {
-//                System.out.println(" Tàu : " + (i + 1));
-//            }
-//        }
-//        if (SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 2) {
-//            if (evt.getX() > 10 && evt.getX() < 260 && evt.getY() > 10 && evt.getX() < 260) {
-//                Point point = new Point();
-//                point.x = (evt.getY() - 10) / 25;
-//                point.y = (evt.getX() - 10) / 25;
-//            } else if (evt.getX() > 300 && evt.getX() < 550 && evt.getY() > 10 && evt.getY() < 260) {
-//                Point point = new Point();
-//                point.x = (evt.getY() - 10) / 25;
-//                point.y = (evt.getX() - 300) / 25;
-//            }
-//        }
-//        repaint();
     }//GEN-LAST:event_formMouseClicked
 
-    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formMouseReleased
-
+    public void changeImage() {
+        arrImage[serial] = Math.abs(1 - arrImage[serial]);
+        if (arrImage[serial] == 0) {
+            if ((begin[serial].y + local[serial]) > 260) {
+                begin[serial].y = 260 - local[serial];
+            }
+            repaint();
+        } else {
+            if (isClient) {
+                if ((begin[serial].x + local[serial]) > 550) {
+                    begin[serial].x = 550 - local[serial];
+                }
+            } else {
+                if ((begin[serial].x + local[serial]) > 260) {
+                    begin[serial].x = 260 - local[serial];
+                }
+            }
+            repaint();
+        }
+    }
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         // TODO add your handling code here:
         if (status == THIETLAP && serial == -1) {
@@ -260,16 +304,28 @@ public class BanDoGame extends javax.swing.JPanel {
             }
         } else {
             if (evt.getX() > 300 && evt.getX() < 550 && evt.getY() > 10 && evt.getY() < 260) {
-                begin[0].x = ((evt.getX() - 10) / 25) * 25 + 10;
-                begin[0].y = ((evt.getY() - 300) / 25) * 25 + 10;
+                int x, y;
+                if (arrImage[serial] == 0) {
+                    if (evt.getY() >= 260 - local[serial]) {
+                        y = 260 - local[serial];
+                    } else {
+                        y = evt.getY();
+                    }
+                    x = evt.getX();
+                } else {
+                    if (evt.getX() >= 550 - local[serial]) {
+                        x = 550 - local[serial];
+                    } else {
+                        x = evt.getX();
+                    }
+                    y = evt.getY();
+                }
+                begin[serial].x = ((x - 300) / 25) * 25 + 300;
+                begin[serial].y = ((y - 10) / 25) * 25 + 10;
             }
         }
         repaint();
     }//GEN-LAST:event_formMouseDragged
-
-    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formMouseMoved
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
@@ -277,7 +333,6 @@ public class BanDoGame extends javax.swing.JPanel {
         for (int i = 0; i < 5; i++) {
             if (getNumber(point, i)) {
                 serial = i;
-                System.err.println(i);
                 break;
             }
             serial = -1;
@@ -302,6 +357,17 @@ public class BanDoGame extends javax.swing.JPanel {
         g.drawImage(tau3[arrImage[2]].getImage(), begin[2].x + XY3[arrImage[2]].x, begin[2].y + XY3[arrImage[2]].y, tau3[arrImage[2]].getImage().getWidth(this), tau3[arrImage[2]].getImage().getHeight(this), null);
         g.drawImage(tau4[arrImage[3]].getImage(), begin[3].x + XY4[arrImage[3]].x, begin[3].y + XY4[arrImage[3]].y, tau4[arrImage[3]].getImage().getWidth(this), tau4[arrImage[3]].getImage().getHeight(this), null);
         g.drawImage(tau5[arrImage[4]].getImage(), begin[4].x + XY5[arrImage[4]].x, begin[4].y + XY5[arrImage[4]].y, tau5[arrImage[4]].getImage().getWidth(this), tau5[arrImage[4]].getImage().getHeight(this), null);
+        if (rival == null || arrRival == null) {
+            return;
+        }
+        g.drawImage(no1[arrRival[0]].getImage(), rival[0].x + XY1[arrRival[0]].x, rival[0].y + XY1[arrRival[0]].y, no1[arrRival[0]].getImage().getWidth(this), no1[arrRival[0]].getImage().getHeight(this), null);
+        g.drawImage(no2[arrRival[1]].getImage(), rival[1].x + XY2[arrRival[1]].x, rival[1].y + XY2[arrRival[1]].y, no2[arrRival[1]].getImage().getWidth(this), no2[arrRival[1]].getImage().getHeight(this), null);
+        g.drawImage(no3[arrRival[2]].getImage(), rival[2].x + XY3[arrRival[2]].x, rival[2].y + XY3[arrRival[2]].y, no3[arrRival[2]].getImage().getWidth(this), no3[arrRival[2]].getImage().getHeight(this), null);
+        g.drawImage(no4[arrRival[3]].getImage(), rival[3].x + XY4[arrRival[3]].x, rival[3].y + XY4[arrRival[3]].y, no4[arrRival[3]].getImage().getWidth(this), no4[arrRival[3]].getImage().getHeight(this), null);
+        System.out.println(rival[4].x+"-"+rival[4].y);
+        System.out.println(arrRival[4]);
+        g.drawImage(no5[arrRival[4]].getImage(), rival[4].x + XY5[arrRival[4]].x, rival[4].y + XY5[arrRival[4]].y, no5[arrRival[4]].getImage().getWidth(this), no5[arrRival[4]].getImage().getHeight(this), null);
+
     }
 
     public void setIsClient(boolean is) {
@@ -311,4 +377,52 @@ public class BanDoGame extends javax.swing.JPanel {
     public void setStatus(int s) {
         status = s;
     }
+
+    public Point[] getBegin() {
+        return begin;
+    }
+
+    public int[] getArrImage() {
+        return arrImage;
+    }
+
+    public void setRival(Point[] begin) {
+        rival = begin;
+    }
+
+    public void setArrRival(int[] arr) {
+        arrRival = arr;
+    }
+    /*
+     * Su dung xet tuong quan giua cac tau
+     */
+//    public boolean testLocal() {
+//        Boolean test1 = testSpace(begin[0], begin[1]) && testSpace(begin[0], begin[2]) && testSpace(begin[0], begin[3]) && testSpace(begin[0], begin[4]);
+//        Boolean test2 = testSpace(begin[1], begin[2]) && testSpace(begin[1], begin[3]) && testSpace(begin[1], begin[4]);
+//        Boolean test3 = testSpace(begin[2], begin[3]) && testSpace(begin[2], begin[4]);
+//        Boolean test4 = testSpace(begin[2], begin[4]);
+//        return test1 && test2 && test3 && test4;
+//    }
+//
+//    private boolean testSpace(Point b, Point e) {
+//        ArrayList<Point> arrb, arre;
+//
+//        return false;
+//    }
+//
+//    private ArrayList<Integer> setArr(int number) {
+//        ArrayList<Integer> e = null;
+//        if (isClient) {
+//        } else {
+//            int x =  (begin[number].y / 25)*10+begin[number].x / 25;
+//            e.add(x);
+//            if(arrImage[number]==0){
+//                
+//            }
+//            else{
+//                
+//            }
+//        }
+//        return e;
+//    }
 }

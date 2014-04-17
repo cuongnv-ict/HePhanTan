@@ -51,7 +51,12 @@ public class XuLy {
         }
     }
 
-    public void sendKhoiTao() {
+    public void sendKhoiTao(Point []begin,int []arr) {
+        try {
+            out.writeBytes(data.setMsg(begin,arr)+"\n");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Không thể gửi dữ liệu", null, JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void sendClose() {
@@ -65,7 +70,7 @@ public class XuLy {
            String msg = in.readLine();
             switch (data.getItype(msg)) {
                 case Packet.KHOITAO:
-                    this.recvKhoiTao();
+                    this.recvKhoiTao(msg);
                     break;
                 case Packet.TINNHAN:
                     this.recvTinNhan(msg);
@@ -84,7 +89,13 @@ public class XuLy {
         } 
     }
 
-    public void recvKhoiTao() {
+    public void recvKhoiTao(String msg) {
+        Point begin[] = new Point[5];
+        int arr[] = new int[5];
+        data.getAllPoint(begin, arr, msg);
+        bando.setArrRival(arr);
+        bando.setRival(begin);
+        bando.repaint();
     }
 
     public void recvTinNhan(String msg) {

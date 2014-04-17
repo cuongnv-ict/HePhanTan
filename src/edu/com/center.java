@@ -231,10 +231,20 @@ public class center extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chơi Game", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         jButton1.setText("Bắt đầu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Nhận thua");
 
         jButton4.setText("Thiết lập");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Thoát");
 
@@ -327,6 +337,8 @@ public class center extends javax.swing.JFrame {
                     public void run() {
                         JOptionPane.showMessageDialog(rootPane, "Đã kết nối thành công", null, JOptionPane.INFORMATION_MESSAGE);
                         xuly = new XuLy(client, area, bando);
+                        bando.setIsClient(true);
+                        bando.setDefaultPoint();
                         new Thread() {
                             @Override
                             public void run() {
@@ -369,6 +381,7 @@ public class center extends javax.swing.JFrame {
                     KhoiTao.setText("Hủy kết nối");
                     Port_TaoTran.setEditable(false);
                     flags_khoitao = false;
+                    bando.setIsClient(false);
                     ThamGia.setEnabled(false);
                     IP_TaoTran.setText(InetAddress.getLocalHost().getHostAddress());
                     (ts = new Thread() {
@@ -378,6 +391,7 @@ public class center extends javax.swing.JFrame {
                                 client = server.accept();
                                 JOptionPane.showMessageDialog(rootPane, "Có kết nối đến máy bạn ", null, JOptionPane.INFORMATION_MESSAGE);
                                 xuly = new XuLy(client, area, bando);
+                                bando.setDefaultPoint();
                                 new Thread() {
                                     @Override
                                     public void run() {
@@ -455,6 +469,17 @@ public class center extends javax.swing.JFrame {
         //dua vao ham su ly
         xuly.sendMessage(text.getText());
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        bando.setDefaultPoint();
+        bando.setStatus(BanDoGame.THIETLAP);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        xuly.sendKhoiTao(bando.getBegin(), bando.getArrImage());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
