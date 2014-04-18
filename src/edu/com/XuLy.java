@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,18 +21,22 @@ import javax.swing.JTextArea;
  */
 public class XuLy {
 
-    Socket client;
-    JTextArea area;
+    private Socket client;
+    private ServerSocket server;
+    private JTextArea area;
     private DataInputStream in;
     private DataOutputStream out;
     private Packet data;
     private BanDoGame bando;
+    private Thread ts;
 
-    public XuLy(Socket client, JTextArea area, BanDoGame bando) {
+    public XuLy(Socket client,ServerSocket server, JTextArea area, BanDoGame bando,Thread ts) {
         try {
             this.client = client;
+            this.server = server;
             this.area = area;
             this.bando = bando;
+            this.ts = ts;
             data = new Packet();
             in = new DataInputStream(client.getInputStream());
             out = new DataOutputStream(client.getOutputStream());
@@ -60,6 +65,17 @@ public class XuLy {
     }
 
     public void sendClose() {
+        try {
+            out.writeBytes(data.setClose());
+            client.close();
+            if(server!=null){
+                server.close();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(XuLy.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            System.exit(0);
+        }
     }
 
     public void sendDienBan(Point point) {
@@ -106,5 +122,15 @@ public class XuLy {
     }
 
     public void recvDongLienKet() {
+        try {
+            area.append("Đối thủ đã thoát\n");
+            client.close();        
+        } catch (IOException ex) {
+            Logger.getLogger(XuLy.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(server!=null){
+                ts.start();
+            }
+        }
     }
 }

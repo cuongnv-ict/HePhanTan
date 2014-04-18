@@ -122,8 +122,8 @@ public class BanDoGame extends javax.swing.JPanel {
         no3[1] = new ImageIcon(this.getClass().getResource("image/tauNgam3-no.png"));
         no4[0] = new ImageIcon(this.getClass().getResource("image/tauNgu2-no.png"));
         no4[1] = new ImageIcon(this.getClass().getResource("image/tauNgu3-no.png"));
-        no4[0] = new ImageIcon(this.getClass().getResource("image/tauThuyChien1-no.png"));
-        no4[1] = new ImageIcon(this.getClass().getResource("image/tauThuyChien2-no.png"));
+        no5[0] = new ImageIcon(this.getClass().getResource("image/tauThuyChien1-no.png"));
+        no5[1] = new ImageIcon(this.getClass().getResource("image/tauThuyChien2-no.png"));
         anhnen = new ImageIcon(this.getClass().getResource("image/song cuon.png"));
         status = THIETLAP;
         isClient = true;
@@ -364,8 +364,6 @@ public class BanDoGame extends javax.swing.JPanel {
         g.drawImage(no2[arrRival[1]].getImage(), rival[1].x + XY2[arrRival[1]].x, rival[1].y + XY2[arrRival[1]].y, no2[arrRival[1]].getImage().getWidth(this), no2[arrRival[1]].getImage().getHeight(this), null);
         g.drawImage(no3[arrRival[2]].getImage(), rival[2].x + XY3[arrRival[2]].x, rival[2].y + XY3[arrRival[2]].y, no3[arrRival[2]].getImage().getWidth(this), no3[arrRival[2]].getImage().getHeight(this), null);
         g.drawImage(no4[arrRival[3]].getImage(), rival[3].x + XY4[arrRival[3]].x, rival[3].y + XY4[arrRival[3]].y, no4[arrRival[3]].getImage().getWidth(this), no4[arrRival[3]].getImage().getHeight(this), null);
-        System.out.println(rival[4].x+"-"+rival[4].y);
-        System.out.println(arrRival[4]);
         g.drawImage(no5[arrRival[4]].getImage(), rival[4].x + XY5[arrRival[4]].x, rival[4].y + XY5[arrRival[4]].y, no5[arrRival[4]].getImage().getWidth(this), no5[arrRival[4]].getImage().getHeight(this), null);
 
     }
@@ -396,33 +394,43 @@ public class BanDoGame extends javax.swing.JPanel {
     /*
      * Su dung xet tuong quan giua cac tau
      */
-//    public boolean testLocal() {
-//        Boolean test1 = testSpace(begin[0], begin[1]) && testSpace(begin[0], begin[2]) && testSpace(begin[0], begin[3]) && testSpace(begin[0], begin[4]);
-//        Boolean test2 = testSpace(begin[1], begin[2]) && testSpace(begin[1], begin[3]) && testSpace(begin[1], begin[4]);
-//        Boolean test3 = testSpace(begin[2], begin[3]) && testSpace(begin[2], begin[4]);
-//        Boolean test4 = testSpace(begin[2], begin[4]);
-//        return test1 && test2 && test3 && test4;
-//    }
-//
-//    private boolean testSpace(Point b, Point e) {
-//        ArrayList<Point> arrb, arre;
-//
-//        return false;
-//    }
-//
-//    private ArrayList<Integer> setArr(int number) {
-//        ArrayList<Integer> e = null;
-//        if (isClient) {
-//        } else {
-//            int x =  (begin[number].y / 25)*10+begin[number].x / 25;
-//            e.add(x);
-//            if(arrImage[number]==0){
-//                
-//            }
-//            else{
-//                
-//            }
-//        }
-//        return e;
-//    }
+
+    public boolean testLocal() {
+        Boolean test1 = testSpace(setArr(0), setArr(1)) && testSpace(setArr(0), setArr(2)) && testSpace(setArr(0), setArr(3)) && testSpace(setArr(0), setArr(4));
+        Boolean test2 = testSpace(setArr(1), setArr(2)) && testSpace(setArr(1), setArr(3)) && testSpace(setArr(1), setArr(4));
+        Boolean test3 = testSpace(setArr(2), setArr(3)) && testSpace(setArr(2), setArr(4));
+        Boolean test4 = testSpace(setArr(3), setArr(4));
+        return test1 && test2 && test3 && test4;
+    }
+
+    private boolean testSpace(ArrayList<Integer> b, ArrayList<Integer> e) {
+        for (int i = 0; i < b.size(); i++) {
+            for (int j = 0; j < e.size(); j++) {
+                if (b.get(i) == e.get(j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private ArrayList<Integer> setArr(int number) {
+        ArrayList<Integer> e = new ArrayList<Integer>();
+        if (isClient) {
+        } else {
+            int row = begin[number].y / 25;
+            int column = begin[number].x / 25;
+            e.add(row * 10 + column);
+            if (arrImage[number] == 0) {
+                for (int i = 0; i < length[number]; i++) {
+                    e.add((row + i) * 10 + column);
+                }
+            } else {
+                for (int i = 0; i < length[number]; i++) {
+                    e.add((row) * 10 + column + i);
+                }
+            }
+        }
+        return e;
+    }
 }

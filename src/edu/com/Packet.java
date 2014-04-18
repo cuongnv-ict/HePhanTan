@@ -80,8 +80,8 @@ public class Packet {
      * Mã hóa thông điệp đóng kết nối
      */
 
-    public String setClose(String msg) {
-        this.msg = String.valueOf(TINNHAN) + ":" + msg;
+    public String setClose() {
+        this.msg = String.valueOf(DONGKETNOI);
         return this.msg;
     }
 }

@@ -5,6 +5,8 @@
 package edu.com;
 
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -34,13 +36,24 @@ public class center extends javax.swing.JFrame {
     private Socket client = null;
     private Thread ts;
     private BanDoGame bando;
-    private XuLy xuly;
+    XuLy xuly;
 
     public center() {
         initComponents();
         this.setResizable(false);
         this.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 400, Toolkit.getDefaultToolkit().getScreenSize().height / 2 - 300);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        xuly = null;
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (xuly == null) {
+                    System.exit(0);
+                } else {
+                    xuly.sendClose();
+                }
+            }
+        });
         TuyChon.add(TaoTran);
         TuyChon.add(ThamGia);
         bando = new BanDoGame();
@@ -247,6 +260,11 @@ public class center extends javax.swing.JFrame {
         });
 
         jButton5.setText("Thoát");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -331,12 +349,11 @@ public class center extends javax.swing.JFrame {
                     Port_ThamGia.setEditable(false);
                     KetNoi.setText("Hủy kết nối");
                 }
-                xuly = new XuLy(client, area, bando);
+                xuly = new XuLy(client, null, area, bando,ts);
                 (ts = new Thread() {
                     @Override
                     public void run() {
                         JOptionPane.showMessageDialog(rootPane, "Đã kết nối thành công", null, JOptionPane.INFORMATION_MESSAGE);
-                        xuly = new XuLy(client, area, bando);
                         bando.setIsClient(true);
                         bando.setDefaultPoint();
                         new Thread() {
@@ -367,6 +384,7 @@ public class center extends javax.swing.JFrame {
                 Port_ThamGia.setEditable(true);
                 TaoTran.setEnabled(true);
                 KetNoi.setText("Kết nối");
+                xuly = null;
             }
         }
     }//GEN-LAST:event_KetNoiActionPerformed
@@ -390,7 +408,7 @@ public class center extends javax.swing.JFrame {
                             try {
                                 client = server.accept();
                                 JOptionPane.showMessageDialog(rootPane, "Có kết nối đến máy bạn ", null, JOptionPane.INFORMATION_MESSAGE);
-                                xuly = new XuLy(client, area, bando);
+                                xuly = new XuLy(client, server, area, bando,ts);
                                 bando.setDefaultPoint();
                                 new Thread() {
                                     @Override
@@ -431,6 +449,7 @@ public class center extends javax.swing.JFrame {
                 KhoiTao.setText("Khởi tạo");
                 ThamGia.setEnabled(true);
                 IP_TaoTran.setText("");
+                xuly = null;
             }
         }
 
@@ -478,8 +497,22 @@ public class center extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        xuly.sendKhoiTao(bando.getBegin(), bando.getArrImage());
+        if (bando.testLocal()) {
+            xuly.sendKhoiTao(bando.getBegin(), bando.getArrImage());
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Không thể thiết lập 2 tàu trùng nhau", null, JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if (xuly == null) {
+            System.exit(0);
+        } else {
+            xuly.sendClose();
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
