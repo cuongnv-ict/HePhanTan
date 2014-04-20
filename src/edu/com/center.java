@@ -342,7 +342,7 @@ public class center extends javax.swing.JFrame {
             try {
                 client = ServerClient.connectServer(IP_ThamGia.getText(), Integer.parseInt(Port_ThamGia.getText()));
                 if (client != null) {
-                    bando.setIsClient(true);
+                    bando.setIsClient(BanDoGame.CLIENT);
                     flags_thamgia = false;
                     IP_ThamGia.setEditable(false);
                     TaoTran.setEnabled(false);
@@ -354,7 +354,8 @@ public class center extends javax.swing.JFrame {
                     @Override
                     public void run() {
                         JOptionPane.showMessageDialog(rootPane, "Đã kết nối thành công", null, JOptionPane.INFORMATION_MESSAGE);
-                        bando.setIsClient(true);
+//                        bando.setIsClient(true);
+                        bando.setLive();
                         bando.setDefaultPoint();
                         new Thread() {
                             @Override
@@ -395,11 +396,10 @@ public class center extends javax.swing.JFrame {
             try {
                 server = ServerClient.createServerSocket(Integer.parseInt(Port_TaoTran.getText()));
                 if (server != null) {
-                    bando.setIsClient(false);
                     KhoiTao.setText("Hủy kết nối");
                     Port_TaoTran.setEditable(false);
                     flags_khoitao = false;
-                    bando.setIsClient(false);
+                    bando.setIsClient(BanDoGame.SERVER);
                     ThamGia.setEnabled(false);
                     IP_TaoTran.setText(InetAddress.getLocalHost().getHostAddress());
                     (ts = new Thread() {
@@ -409,6 +409,7 @@ public class center extends javax.swing.JFrame {
                                 client = server.accept();
                                 JOptionPane.showMessageDialog(rootPane, "Có kết nối đến máy bạn ", null, JOptionPane.INFORMATION_MESSAGE);
                                 xuly = new XuLy(client, server, area, bando,ts);
+                                bando.setLive();
                                 bando.setDefaultPoint();
                                 new Thread() {
                                     @Override

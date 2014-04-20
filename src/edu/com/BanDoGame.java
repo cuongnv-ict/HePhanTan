@@ -22,6 +22,9 @@ public class BanDoGame extends javax.swing.JPanel {
     public static final int BATDAU = 1;
     public static final int THIETLAP = 2;
     public static final int NHANTHUA = 3;
+    public static final int SERVER = 1;
+    public static final int CLIENT = -1;
+    public static final int DEFINITE = 0;
     /*
      * Khởi tạo file ảnh
      */
@@ -36,6 +39,8 @@ public class BanDoGame extends javax.swing.JPanel {
     private ImageIcon no4[];
     private ImageIcon no5[];
     private ImageIcon anhnen;
+    private ImageIcon trung;
+    private ImageIcon truot;
     /*
      * Khởi tạo vị trí tàu và hướng tàu
      */
@@ -53,7 +58,7 @@ public class BanDoGame extends javax.swing.JPanel {
      * Chiều dài mỗi tàu
      */
     private int length[];
-    private boolean isClient;//Kien tra xem chuong trinh o mo hinh nao;
+    private int isClient;//Kien tra xem chuong trinh o mo hinh nao;
     private int status;//Kiem tra xem chuong trinh o trang thai nao;
     private int serial;
     private int[] local;//Can le toa do di chuyen
@@ -62,6 +67,11 @@ public class BanDoGame extends javax.swing.JPanel {
      */
     private Point rival[];
     private int arrRival[];
+    /*
+     * Luu thong tin tau 2 ben
+     */
+    private boolean host[];
+    private boolean client[];
 
     public BanDoGame() {
         initComponents();
@@ -84,6 +94,8 @@ public class BanDoGame extends javax.swing.JPanel {
         arrImage = new int[5];
         length = new int[5];
         local = new int[5];
+        host = new boolean[5];
+        client = new boolean[5];
         XY1[0] = new Point(-4, 4);
         XY1[1] = new Point(4, -4);
         XY2[0] = new Point(0, -5);
@@ -125,12 +137,13 @@ public class BanDoGame extends javax.swing.JPanel {
         no5[0] = new ImageIcon(this.getClass().getResource("image/tauThuyChien1-no.png"));
         no5[1] = new ImageIcon(this.getClass().getResource("image/tauThuyChien2-no.png"));
         anhnen = new ImageIcon(this.getClass().getResource("image/song cuon.png"));
+        truot = new ImageIcon(this.getClass().getResource("image/truot.png"));
+        trung = new ImageIcon(this.getClass().getResource("image/trung.png"));
         status = THIETLAP;
-        isClient = true;
+        isClient = DEFINITE;
         serial = -1;
         rival = null;
         arrRival = null;
-        this.setDefaultPoint();
     }
 
     /**
@@ -147,6 +160,7 @@ public class BanDoGame extends javax.swing.JPanel {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
             }
+
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
@@ -160,17 +174,17 @@ public class BanDoGame extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 607, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 607, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 420, Short.MAX_VALUE));
     }// </editor-fold>                        
 
     public void setDefaultPoint() {
-        if (isClient) {
+        if (isClient == DEFINITE) {
+            return;
+        } else if (isClient == CLIENT) {
             begin[0] = new Point(300, 10);
             begin[1] = new Point(475, 60);
             begin[2] = new Point(400, 85);
@@ -190,9 +204,25 @@ public class BanDoGame extends javax.swing.JPanel {
         arrImage[4] = 1;
         repaint();
     }
+    /*
+     * Thiet lap thong tin tau, su song chet cua moi tau.
+     */
+
+    public void setLive() {
+        for (int i = 0; i < 5; i++) {
+            host[i] = true;
+            client[i] = false;
+        }
+    }
+    /*
+     * Xac dinh xem vi tri clik la len tau nao
+     */
 
     public boolean getNumber(Point point, int number) {
-        if (!isClient) {
+        if (isClient == DEFINITE) {
+            return false;
+        }
+        if (isClient == SERVER) {
             if (arrImage[number] == 0) {
                 if ((((point.x - 10) / 25) == ((begin[number].x - 10) / 25))
                         && (((point.y - 10) / 25) >= ((begin[number].y - 10) / 25))
@@ -232,9 +262,7 @@ public class BanDoGame extends javax.swing.JPanel {
 
     }
 
-    public void getLocal(int number) {
-    }
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {                                  
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         if (evt.getClickCount() == 2 && serial != -1) {
             this.changeImage();
@@ -254,7 +282,10 @@ public class BanDoGame extends javax.swing.JPanel {
             }
         }
         repaint();
-    }                                 
+    }
+    /*
+     * Xoay anh khi dang thiet lap vi tri tau
+     */
 
     public void changeImage() {
         arrImage[serial] = Math.abs(1 - arrImage[serial]);
@@ -264,7 +295,7 @@ public class BanDoGame extends javax.swing.JPanel {
             }
             repaint();
         } else {
-            if (isClient) {
+            if (isClient == CLIENT) {
                 if ((begin[serial].x + local[serial]) > 550) {
                     begin[serial].x = 550 - local[serial];
                 }
@@ -276,12 +307,13 @@ public class BanDoGame extends javax.swing.JPanel {
             repaint();
         }
     }
-    private void formMouseDragged(java.awt.event.MouseEvent evt) {                                  
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         if (status == THIETLAP && serial == -1) {
             return;
         }
-        if (!isClient) {
+        if (isClient == SERVER) {
             if (evt.getX() > 10 && evt.getX() < 260 && evt.getY() > 10 && evt.getY() < 260) {
                 int x, y;
                 if (arrImage[serial] == 0) {
@@ -302,7 +334,7 @@ public class BanDoGame extends javax.swing.JPanel {
                 begin[serial].x = ((x - 10) / 25) * 25 + 10;
                 begin[serial].y = ((y - 10) / 25) * 25 + 10;
             }
-        } else {
+        } else if (isClient == CLIENT) {
             if (evt.getX() > 300 && evt.getX() < 550 && evt.getY() > 10 && evt.getY() < 260) {
                 int x, y;
                 if (arrImage[serial] == 0) {
@@ -325,9 +357,9 @@ public class BanDoGame extends javax.swing.JPanel {
             }
         }
         repaint();
-    }                                 
+    }
 
-    private void formMousePressed(java.awt.event.MouseEvent evt) {                                  
+    private void formMousePressed(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         Point point = new Point(evt.getX(), evt.getY());
         for (int i = 0; i < 5; i++) {
@@ -337,7 +369,7 @@ public class BanDoGame extends javax.swing.JPanel {
             }
             serial = -1;
         }
-    }                                 
+    }
 
     // Variables declaration - do not modify                     
     // End of variables declaration                   
@@ -352,23 +384,46 @@ public class BanDoGame extends javax.swing.JPanel {
             g.drawLine(300, 10 + (i * 25), 550, (i * 25) + 10);
             g.drawLine(300 + (i * 25), 10, 300 + (i * 25), 260);
         }
-        g.drawImage(tau1[arrImage[0]].getImage(), begin[0].x + XY1[arrImage[0]].x, begin[0].y + XY1[arrImage[0]].y, tau1[arrImage[0]].getImage().getWidth(this), tau1[arrImage[0]].getImage().getHeight(this), null);
-        g.drawImage(tau2[arrImage[1]].getImage(), begin[1].x + XY2[arrImage[1]].x, begin[1].y + XY2[arrImage[1]].y, tau2[arrImage[1]].getImage().getWidth(this), tau2[arrImage[1]].getImage().getHeight(this), null);
-        g.drawImage(tau3[arrImage[2]].getImage(), begin[2].x + XY3[arrImage[2]].x, begin[2].y + XY3[arrImage[2]].y, tau3[arrImage[2]].getImage().getWidth(this), tau3[arrImage[2]].getImage().getHeight(this), null);
-        g.drawImage(tau4[arrImage[3]].getImage(), begin[3].x + XY4[arrImage[3]].x, begin[3].y + XY4[arrImage[3]].y, tau4[arrImage[3]].getImage().getWidth(this), tau4[arrImage[3]].getImage().getHeight(this), null);
-        g.drawImage(tau5[arrImage[4]].getImage(), begin[4].x + XY5[arrImage[4]].x, begin[4].y + XY5[arrImage[4]].y, tau5[arrImage[4]].getImage().getWidth(this), tau5[arrImage[4]].getImage().getHeight(this), null);
+        if (isClient == DEFINITE) {
+            return;
+        }
+        if (host[0]) {
+            g.drawImage(tau1[arrImage[0]].getImage(), begin[0].x + XY1[arrImage[0]].x, begin[0].y + XY1[arrImage[0]].y, tau1[arrImage[0]].getImage().getWidth(this), tau1[arrImage[0]].getImage().getHeight(this), null);
+        }
+        if (host[1]) {
+            g.drawImage(tau2[arrImage[1]].getImage(), begin[1].x + XY2[arrImage[1]].x, begin[1].y + XY2[arrImage[1]].y, tau2[arrImage[1]].getImage().getWidth(this), tau2[arrImage[1]].getImage().getHeight(this), null);
+        }
+        if (host[2]) {
+            g.drawImage(tau3[arrImage[2]].getImage(), begin[2].x + XY3[arrImage[2]].x, begin[2].y + XY3[arrImage[2]].y, tau3[arrImage[2]].getImage().getWidth(this), tau3[arrImage[2]].getImage().getHeight(this), null);
+        }
+        if (host[3]) {
+            g.drawImage(tau4[arrImage[3]].getImage(), begin[3].x + XY4[arrImage[3]].x, begin[3].y + XY4[arrImage[3]].y, tau4[arrImage[3]].getImage().getWidth(this), tau4[arrImage[3]].getImage().getHeight(this), null);
+        }
+        if (host[4]) {
+            g.drawImage(tau5[arrImage[4]].getImage(), begin[4].x + XY5[arrImage[4]].x, begin[4].y + XY5[arrImage[4]].y, tau5[arrImage[4]].getImage().getWidth(this), tau5[arrImage[4]].getImage().getHeight(this), null);
+        }
         if (rival == null || arrRival == null) {
             return;
         }
-        g.drawImage(no1[arrRival[0]].getImage(), rival[0].x + XY1[arrRival[0]].x, rival[0].y + XY1[arrRival[0]].y, no1[arrRival[0]].getImage().getWidth(this), no1[arrRival[0]].getImage().getHeight(this), null);
-        g.drawImage(no2[arrRival[1]].getImage(), rival[1].x + XY2[arrRival[1]].x, rival[1].y + XY2[arrRival[1]].y, no2[arrRival[1]].getImage().getWidth(this), no2[arrRival[1]].getImage().getHeight(this), null);
-        g.drawImage(no3[arrRival[2]].getImage(), rival[2].x + XY3[arrRival[2]].x, rival[2].y + XY3[arrRival[2]].y, no3[arrRival[2]].getImage().getWidth(this), no3[arrRival[2]].getImage().getHeight(this), null);
-        g.drawImage(no4[arrRival[3]].getImage(), rival[3].x + XY4[arrRival[3]].x, rival[3].y + XY4[arrRival[3]].y, no4[arrRival[3]].getImage().getWidth(this), no4[arrRival[3]].getImage().getHeight(this), null);
-        g.drawImage(no5[arrRival[4]].getImage(), rival[4].x + XY5[arrRival[4]].x, rival[4].y + XY5[arrRival[4]].y, no5[arrRival[4]].getImage().getWidth(this), no5[arrRival[4]].getImage().getHeight(this), null);
+        if (client[0]) {
+            g.drawImage(no1[arrRival[0]].getImage(), rival[0].x + XY1[arrRival[0]].x, rival[0].y + XY1[arrRival[0]].y, no1[arrRival[0]].getImage().getWidth(this), no1[arrRival[0]].getImage().getHeight(this), null);
+        }
+        if (client[1]) {
+            g.drawImage(no2[arrRival[1]].getImage(), rival[1].x + XY2[arrRival[1]].x, rival[1].y + XY2[arrRival[1]].y, no2[arrRival[1]].getImage().getWidth(this), no2[arrRival[1]].getImage().getHeight(this), null);
+        }
+        if (client[2]) {
+            g.drawImage(no3[arrRival[2]].getImage(), rival[2].x + XY3[arrRival[2]].x, rival[2].y + XY3[arrRival[2]].y, no3[arrRival[2]].getImage().getWidth(this), no3[arrRival[2]].getImage().getHeight(this), null);
+        }
+        if (client[3]) {
+            g.drawImage(no4[arrRival[3]].getImage(), rival[3].x + XY4[arrRival[3]].x, rival[3].y + XY4[arrRival[3]].y, no4[arrRival[3]].getImage().getWidth(this), no4[arrRival[3]].getImage().getHeight(this), null);
+        }
+        if (client[4]) {
+            g.drawImage(no5[arrRival[4]].getImage(), rival[4].x + XY5[arrRival[4]].x, rival[4].y + XY5[arrRival[4]].y, no5[arrRival[4]].getImage().getWidth(this), no5[arrRival[4]].getImage().getHeight(this), null);
+        }
 
     }
 
-    public void setIsClient(boolean is) {
+    public void setIsClient(int is) {
         isClient = is;
     }
 
@@ -402,6 +457,9 @@ public class BanDoGame extends javax.swing.JPanel {
         Boolean test4 = testSpace(setArr(3), setArr(4));
         return test1 && test2 && test3 && test4;
     }
+    /*
+     * Kiem tra xem 2 tau co giao nhau hay khong
+     */
 
     private boolean testSpace(ArrayList<Integer> b, ArrayList<Integer> e) {
         for (int i = 0; i < b.size(); i++) {
@@ -413,11 +471,14 @@ public class BanDoGame extends javax.swing.JPanel {
         }
         return true;
     }
+    /*
+     * Sinh ra vi tri toa do cua 1 tau
+     */
 
     private ArrayList<Integer> setArr(int number) {
         ArrayList<Integer> e = new ArrayList<Integer>();
-        if (isClient) {
-        } else {
+        if (isClient == CLIENT) {
+        } else if (isClient == SERVER) {
             int row = begin[number].y / 25;
             int column = begin[number].x / 25;
             e.add(row * 10 + column);
