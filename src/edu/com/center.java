@@ -100,12 +100,12 @@ public class center extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         area = new javax.swing.JTextArea();
         text = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        gui = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        batdau = new javax.swing.JButton();
+        thua = new javax.swing.JButton();
+        thietlap = new javax.swing.JButton();
+        thoat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,10 +154,10 @@ public class center extends javax.swing.JFrame {
         area.setRows(5);
         jScrollPane1.setViewportView(area);
 
-        jButton3.setText("Gửi");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        gui.setText("Gửi");
+        gui.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                guiActionPerformed(evt);
             }
         });
 
@@ -173,7 +173,7 @@ public class center extends javax.swing.JFrame {
                     .addGroup(tuychonLayout.createSequentialGroup()
                         .addComponent(text)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
+                        .addComponent(gui))
                     .addGroup(tuychonLayout.createSequentialGroup()
                         .addGroup(tuychonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(tuychonLayout.createSequentialGroup()
@@ -238,31 +238,31 @@ public class center extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(tuychonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3)))
+                    .addComponent(gui)))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chơi Game", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        jButton1.setText("Bắt đầu");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        batdau.setText("Bắt đầu");
+        batdau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                batdauActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Nhận thua");
+        thua.setText("Nhận thua");
 
-        jButton4.setText("Thiết lập");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        thietlap.setText("Thiết lập");
+        thietlap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                thietlapActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Thoát");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        thoat.setText("Thoát");
+        thoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                thoatActionPerformed(evt);
             }
         });
 
@@ -273,23 +273,23 @@ public class center extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(486, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(batdau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(thua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(thietlap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jButton4)
+                .addComponent(thietlap)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(batdau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(thua)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5))
+                .addComponent(thoat))
         );
 
         javax.swing.GroupLayout trungtamLayout = new javax.swing.GroupLayout(trungtam);
@@ -349,7 +349,7 @@ public class center extends javax.swing.JFrame {
                     Port_ThamGia.setEditable(false);
                     KetNoi.setText("Hủy kết nối");
                 }
-                xuly = new XuLy(client, null, area, bando,ts);
+                xuly = new XuLy(client, null, area, bando, ts);
                 (ts = new Thread() {
                     @Override
                     public void run() {
@@ -399,7 +399,6 @@ public class center extends javax.swing.JFrame {
                     KhoiTao.setText("Hủy kết nối");
                     Port_TaoTran.setEditable(false);
                     flags_khoitao = false;
-                    bando.setIsClient(BanDoGame.SERVER);
                     ThamGia.setEnabled(false);
                     IP_TaoTran.setText(InetAddress.getLocalHost().getHostAddress());
                     (ts = new Thread() {
@@ -408,7 +407,8 @@ public class center extends javax.swing.JFrame {
                             try {
                                 client = server.accept();
                                 JOptionPane.showMessageDialog(rootPane, "Có kết nối đến máy bạn ", null, JOptionPane.INFORMATION_MESSAGE);
-                                xuly = new XuLy(client, server, area, bando,ts);
+                                xuly = new XuLy(client, server, area, bando, ts);
+                                bando.setIsClient(BanDoGame.SERVER);
                                 bando.setLive();
                                 bando.setDefaultPoint();
                                 new Thread() {
@@ -481,39 +481,48 @@ public class center extends javax.swing.JFrame {
 
     }//GEN-LAST:event_TaoTranActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void guiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiActionPerformed
         // TODO add your handling code here:
         if (client == null) {
             return;
         }
         //dua vao ham su ly
+        area.append("Ban: " + text.getText() + "\n");
         xuly.sendMessage(text.getText());
-    }//GEN-LAST:event_jButton3ActionPerformed
+        text.setText("");
+    }//GEN-LAST:event_guiActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void thietlapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thietlapActionPerformed
         // TODO add your handling code here:
+        if (client == null) {
+            return;
+        }
         bando.setDefaultPoint();
         bando.setStatus(BanDoGame.THIETLAP);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_thietlapActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void batdauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batdauActionPerformed
         // TODO add your handling code here:
+        if (client == null) {
+            return;
+        }
         if (bando.testLocal()) {
             xuly.sendKhoiTao(bando.getBegin(), bando.getArrImage());
+            bando.setStatus(BanDoGame.BATDAU);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Không thể thiết lập 2 tàu trùng nhau", null, JOptionPane.ERROR_MESSAGE);
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_batdauActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thoatActionPerformed
         // TODO add your handling code here:
         if (xuly == null) {
             System.exit(0);
         } else {
             xuly.sendClose();
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_thoatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -561,11 +570,8 @@ public class center extends javax.swing.JFrame {
     private javax.swing.JRadioButton ThamGia;
     private javax.swing.ButtonGroup TuyChon;
     private javax.swing.JTextArea area;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton batdau;
+    private javax.swing.JButton gui;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -574,6 +580,9 @@ public class center extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField text;
+    private javax.swing.JButton thietlap;
+    private javax.swing.JButton thoat;
+    private javax.swing.JButton thua;
     private javax.swing.JPanel trungtam;
     private javax.swing.JPanel tuychon;
     // End of variables declaration//GEN-END:variables
