@@ -354,7 +354,7 @@ public class center extends javax.swing.JFrame {
                     @Override
                     public void run() {
                         JOptionPane.showMessageDialog(rootPane, "Đã kết nối thành công", null, JOptionPane.INFORMATION_MESSAGE);
-//                        bando.setIsClient(true);
+                        bando.setXuly(xuly);
                         bando.setLive();
                         bando.setDefaultPoint();
                         new Thread() {
@@ -408,6 +408,7 @@ public class center extends javax.swing.JFrame {
                                 client = server.accept();
                                 JOptionPane.showMessageDialog(rootPane, "Có kết nối đến máy bạn ", null, JOptionPane.INFORMATION_MESSAGE);
                                 xuly = new XuLy(client, server, area, bando, ts);
+                                bando.setXuly(xuly);
                                 bando.setIsClient(BanDoGame.SERVER);
                                 bando.setLive();
                                 bando.setDefaultPoint();
@@ -487,6 +488,9 @@ public class center extends javax.swing.JFrame {
             return;
         }
         //dua vao ham su ly
+        if(text.getText().equals("")){
+            return;
+        }
         area.append("Ban: " + text.getText() + "\n");
         xuly.sendMessage(text.getText());
         text.setText("");
@@ -509,6 +513,7 @@ public class center extends javax.swing.JFrame {
         if (bando.testLocal()) {
             xuly.sendKhoiTao(bando.getBegin(), bando.getArrImage());
             bando.setStatus(BanDoGame.BATDAU);
+            bando.setBeginHost(true);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Không thể thiết lập 2 tàu trùng nhau", null, JOptionPane.ERROR_MESSAGE);
         }

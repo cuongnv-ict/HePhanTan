@@ -229,41 +229,41 @@ public class BanDoGame extends javax.swing.JPanel {
      * Xac dinh xem vi tri clik la len tau nao
      */
 
-    public boolean getNumber(Point point, int number) {
+    public boolean getNumber(Point point, int number, int arrI[], Point arrP[]) {
         if (isClient == DEFINITE) {
             return false;
         }
         if (isClient == SERVER) {
-            if (arrImage[number] == 0) {
-                if ((((point.x - 10) / 25) == ((begin[number].x - 10) / 25))
-                        && (((point.y - 10) / 25) >= ((begin[number].y - 10) / 25))
-                        && (((point.y - 10) / 25) < ((begin[number].y - 10) / 25) + length[number])) {
+            if (arrI[number] == 0) {
+                if ((((point.x - 10) / 25) == ((arrP[number].x - 10) / 25))
+                        && (((point.y - 10) / 25) >= ((arrP[number].y - 10) / 25))
+                        && (((point.y - 10) / 25) < ((arrP[number].y - 10) / 25) + length[number])) {
                     return true;
                 } else {
                     return false;
                 }
             } else {
-                if ((((point.y - 10) / 25) == ((begin[number].y - 10) / 25))
-                        && (((point.x - 10) / 25) >= ((begin[number].x - 10) / 25))
-                        && (((point.x - 10) / 25) < ((begin[number].x - 10) / 25) + length[number])) {
+                if ((((point.y - 10) / 25) == ((arrP[number].y - 10) / 25))
+                        && (((point.x - 10) / 25) >= ((arrP[number].x - 10) / 25))
+                        && (((point.x - 10) / 25) < ((arrP[number].x - 10) / 25) + length[number])) {
                     return true;
                 } else {
                     return false;
                 }
             }
         } else {
-            if (arrImage[number] == 0) {
-                if ((((point.x - 300) / 25) == ((begin[number].x - 300) / 25))
-                        && (((point.y - 10) / 25) >= ((begin[number].y - 10) / 25))
-                        && (((point.y - 10) / 25) < ((begin[number].y - 10) / 25) + length[number])) {
+            if (arrI[number] == 0) {
+                if ((((point.x - 300) / 25) == ((arrP[number].x - 300) / 25))
+                        && (((point.y - 10) / 25) >= ((arrP[number].y - 10) / 25))
+                        && (((point.y - 10) / 25) < ((arrP[number].y - 10) / 25) + length[number])) {
                     return true;
                 } else {
                     return false;
                 }
             } else {
-                if ((((point.y - 10) / 25) == ((begin[number].y - 10) / 25))
-                        && (((point.x - 300) / 25) >= ((begin[number].x - 300) / 25))
-                        && (((point.x - 300) / 25) < ((begin[number].x - 300) / 25) + length[number])) {
+                if ((((point.y - 10) / 25) == ((arrP[number].y - 10) / 25))
+                        && (((point.x - 300) / 25) >= ((arrP[number].x - 300) / 25))
+                        && (((point.x - 300) / 25) < ((arrP[number].x - 300) / 25) + length[number])) {
                     return true;
                 } else {
                     return false;
@@ -299,12 +299,16 @@ public class BanDoGame extends javax.swing.JPanel {
                     Point pointClick = new Point();
                     pointClick.x = ((evt.getX() - 300) / 25) * 25 + 300;
                     pointClick.y = ((evt.getY() - 10) / 25) * 25 + 10;
+                    xuly.sendDienBan(pointClick);
+                    System.out.println("Da gui tin");
                 }
             } else if (isClient == CLIENT) {
                 if (evt.getX() > 10 && evt.getX() < 260 && evt.getY() > 10 && evt.getY() < 260) {
                     Point pointClick = new Point();
                     pointClick.x = ((evt.getX() - 10) / 25) * 25 + 10;
                     pointClick.y = ((evt.getY() - 10) / 25) * 25 + 10;
+                    xuly.sendDienBan(pointClick);
+                    System.out.println("Da gui tin");
                 }
             }
         }
@@ -330,6 +334,7 @@ public class BanDoGame extends javax.swing.JPanel {
             repaint();
         }
     }
+
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         // TODO add your handling code here:
         if (status == THIETLAP && serial != -1) {
@@ -382,13 +387,15 @@ public class BanDoGame extends javax.swing.JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
-        Point point = new Point(evt.getX(), evt.getY());
-        for (int i = 0; i < 5; i++) {
-            if (getNumber(point, i)) {
-                serial = i;
-                break;
+        if (status == THIETLAP) {
+            Point point = new Point(evt.getX(), evt.getY());
+            for (int i = 0; i < 5; i++) {
+                if (getNumber(point, i, arrImage, begin)) {
+                    serial = i;
+                    break;
+                }
+                serial = -1;
             }
-            serial = -1;
         }
     }//GEN-LAST:event_formMousePressed
 
@@ -441,11 +448,11 @@ public class BanDoGame extends javax.swing.JPanel {
         if (client[4]) {
             g.drawImage(no5[arrRival[4]].getImage(), rival[4].x + XY5[arrRival[4]].x, rival[4].y + XY5[arrRival[4]].y, no5[arrRival[4]].getImage().getWidth(this), no5[arrRival[4]].getImage().getHeight(this), null);
         }
-        for(int i =0;i<trungPoint.size();i++){
-              g.drawImage(trung.getImage(),trungPoint.get(i).x,trungPoint.get(i).y,25,25, null);
+        for (int i = 0; i < trungPoint.size(); i++) {
+            g.drawImage(trung.getImage(), trungPoint.get(i).x, trungPoint.get(i).y, 25, 25, null);
         }
-        for(int i=0;i<truotPoint.size();i++){
-               g.drawImage(truot.getImage(),truotPoint.get(i).x,truotPoint.get(i).y,25,25, null);
+        for (int i = 0; i < truotPoint.size(); i++) {
+            g.drawImage(truot.getImage(), truotPoint.get(i).x, truotPoint.get(i).y, 25, 25, null);
         }
     }
 

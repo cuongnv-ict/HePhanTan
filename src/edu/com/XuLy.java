@@ -79,11 +79,17 @@ public class XuLy {
     }
 
     public void sendDienBan(Point point) {
+        try {
+            out.writeBytes(data.setMsg(point));
+        } catch (IOException ex) {
+            Logger.getLogger(XuLy.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public boolean listen() {
         try {
            String msg = in.readLine();
+            System.out.println(msg);
             switch (data.getItype(msg)) {
                 case Packet.KHOITAO:
                     this.recvKhoiTao(msg);
@@ -92,7 +98,7 @@ public class XuLy {
                     this.recvTinNhan(msg);
                     break;
                 case Packet.TOADO:
-                    this.recvToaDo();
+                    this.recvToaDo(msg);
                     break;
                 case Packet.DONGKETNOI:
                     this.recvDongLienKet();
@@ -111,6 +117,7 @@ public class XuLy {
         data.getAllPoint(begin, arr, msg);
         bando.setArrRival(arr);
         bando.setRival(begin);
+        bando.setBeginClient(true);
         bando.repaint();
     }
 
@@ -118,7 +125,9 @@ public class XuLy {
         area.append("Đối thủ: " + data.getMsg(msg) + "\n");
     }
 
-    public void recvToaDo() {
+    public void recvToaDo(String msg) {
+        Point point = data.getPoint(msg);
+        System.out.println(point.x+"-"+point.y);
     }
 
     public void recvDongLienKet() {
