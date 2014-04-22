@@ -77,9 +77,9 @@ public class BanDoGame extends javax.swing.JPanel {
      */
     private boolean host[];
     private boolean client[];
-    private XuLy xuly;
     private ArrayList<Point> trungPoint;
     private ArrayList<Point> truotPoint;
+    private XuLy xuly;
 
     public BanDoGame() {
         initComponents();
@@ -300,7 +300,6 @@ public class BanDoGame extends javax.swing.JPanel {
                     pointClick.x = ((evt.getX() - 300) / 25) * 25 + 300;
                     pointClick.y = ((evt.getY() - 10) / 25) * 25 + 10;
                     xuly.sendDienBan(pointClick);
-                    System.out.println("Da gui tin");
                 }
             } else if (isClient == CLIENT) {
                 if (evt.getX() > 10 && evt.getX() < 260 && evt.getY() > 10 && evt.getY() < 260) {
@@ -308,7 +307,6 @@ public class BanDoGame extends javax.swing.JPanel {
                     pointClick.x = ((evt.getX() - 10) / 25) * 25 + 10;
                     pointClick.y = ((evt.getY() - 10) / 25) * 25 + 10;
                     xuly.sendDienBan(pointClick);
-                    System.out.println("Da gui tin");
                 }
             }
         }
@@ -499,10 +497,10 @@ public class BanDoGame extends javax.swing.JPanel {
     public void setXuly(XuLy xuly) {
         this.xuly = xuly;
     }
+
     /*
      * Su dung xet tuong quan giua cac tau
      */
-
     public boolean testLocal() {
         Boolean test1 = testSpace(setArr(0), setArr(1)) && testSpace(setArr(0), setArr(2)) && testSpace(setArr(0), setArr(3)) && testSpace(setArr(0), setArr(4));
         Boolean test2 = testSpace(setArr(1), setArr(2)) && testSpace(setArr(1), setArr(3)) && testSpace(setArr(1), setArr(4));

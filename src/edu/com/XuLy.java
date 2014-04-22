@@ -80,7 +80,7 @@ public class XuLy {
 
     public void sendDienBan(Point point) {
         try {
-            out.writeBytes(data.setMsg(point));
+            out.writeBytes(data.setMsg(point)+"\n");
         } catch (IOException ex) {
             Logger.getLogger(XuLy.class.getName()).log(Level.SEVERE, null, ex);
         }

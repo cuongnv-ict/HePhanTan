@@ -4,6 +4,7 @@
  */
 package edu.com;
 
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -36,7 +37,7 @@ public class center extends javax.swing.JFrame {
     private Socket client = null;
     private Thread ts;
     private BanDoGame bando;
-    XuLy xuly;
+    protected XuLy xuly;
 
     public center() {
         initComponents();
@@ -54,9 +55,9 @@ public class center extends javax.swing.JFrame {
                 }
             }
         });
+        bando = new BanDoGame();
         TuyChon.add(TaoTran);
         TuyChon.add(ThamGia);
-        bando = new BanDoGame();
         bando.setSize(560, 270);
         bando.setLocation(20, 20);
         trungtam.add(bando);
@@ -354,8 +355,8 @@ public class center extends javax.swing.JFrame {
                     @Override
                     public void run() {
                         JOptionPane.showMessageDialog(rootPane, "Đã kết nối thành công", null, JOptionPane.INFORMATION_MESSAGE);
-                        bando.setXuly(xuly);
                         bando.setLive();
+                        bando.setXuly(xuly);
                         bando.setDefaultPoint();
                         new Thread() {
                             @Override
@@ -408,8 +409,8 @@ public class center extends javax.swing.JFrame {
                                 client = server.accept();
                                 JOptionPane.showMessageDialog(rootPane, "Có kết nối đến máy bạn ", null, JOptionPane.INFORMATION_MESSAGE);
                                 xuly = new XuLy(client, server, area, bando, ts);
-                                bando.setXuly(xuly);
                                 bando.setIsClient(BanDoGame.SERVER);
+                                bando.setXuly(xuly);
                                 bando.setLive();
                                 bando.setDefaultPoint();
                                 new Thread() {
