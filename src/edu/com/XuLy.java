@@ -89,7 +89,6 @@ public class XuLy {
     public boolean listen() {
         try {
            String msg = in.readLine();
-            System.out.println(msg);
             switch (data.getItype(msg)) {
                 case Packet.KHOITAO:
                     this.recvKhoiTao(msg);
@@ -118,6 +117,13 @@ public class XuLy {
         bando.setArrRival(arr);
         bando.setRival(begin);
         bando.setBeginClient(true);
+         if(bando.isBeginHost()){
+                area.append("Đối thủ đã sẵng sàng, trận đấu bắt đầu.\n");
+            }
+            else{
+                 area.append("Đối thủ đã sẵng sàng, họ đang chờ bạn đó.\n");
+            }
+           
         bando.repaint();
     }
 
@@ -126,8 +132,9 @@ public class XuLy {
     }
 
     public void recvToaDo(String msg) {
+        System.out.println(msg);
         Point point = data.getPoint(msg);
-        System.out.println(point.x+"-"+point.y);
+        bando.setDiemBan(point);
     }
 
     public void recvDongLienKet() {

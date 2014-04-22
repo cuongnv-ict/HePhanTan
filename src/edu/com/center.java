@@ -515,6 +515,12 @@ public class center extends javax.swing.JFrame {
             xuly.sendKhoiTao(bando.getBegin(), bando.getArrImage());
             bando.setStatus(BanDoGame.BATDAU);
             bando.setBeginHost(true);
+            if(bando.isBeginClient()){
+                area.append("Bạn đã sẵng sàng, trận đấu bắt đầu.\n");
+            }
+            else{
+                 area.append("Bạn đã sẵng sàng, vui lòng chờ đối thủ.\n");
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Không thể thiết lập 2 tàu trùng nhau", null, JOptionPane.ERROR_MESSAGE);
         }

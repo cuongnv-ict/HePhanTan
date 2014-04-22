@@ -222,7 +222,7 @@ public class BanDoGame extends javax.swing.JPanel {
     public void setLive() {
         for (int i = 0; i < 5; i++) {
             host[i] = true;
-            client[i] = true;
+            client[i] = false;
         }
     }
     /*
@@ -299,17 +299,90 @@ public class BanDoGame extends javax.swing.JPanel {
                     Point pointClick = new Point();
                     pointClick.x = ((evt.getX() - 300) / 25) * 25 + 300;
                     pointClick.y = ((evt.getY() - 10) / 25) * 25 + 10;
+                    if (clickedPoint(pointClick)) {
+                        return;
+                    }
                     xuly.sendDienBan(pointClick);
+                    for (int i = 0; i < 5; i++) {
+                        if (getNumber(pointClick, i, arrRival, rival)) {
+                            trungPoint.add(pointClick);
+                            repaint();
+                            break;
+                        }
+                        if (i == 4) {
+                            truotPoint.add(pointClick);
+                            repaint();
+                        }
+                    }
                 }
             } else if (isClient == CLIENT) {
                 if (evt.getX() > 10 && evt.getX() < 260 && evt.getY() > 10 && evt.getY() < 260) {
                     Point pointClick = new Point();
                     pointClick.x = ((evt.getX() - 10) / 25) * 25 + 10;
                     pointClick.y = ((evt.getY() - 10) / 25) * 25 + 10;
+                    if (clickedPoint(pointClick)) {
+                        return;
+                    }
                     xuly.sendDienBan(pointClick);
+                    for (int i = 0; i < 5; i++) {
+                        if (getNumber(pointClick, i, arrRival, rival)) {
+                            trungPoint.add(pointClick);
+                            repaint();
+                            break;
+                        }
+                        if (i == 4) {
+                            truotPoint.add(pointClick);
+                            repaint();
+                        }
+                    }
                 }
             }
         }
+    }
+
+    public void setDiemBan(Point point) {
+        if (isClient == SERVER) {
+            for (int i = 0; i < 5; i++) {
+                if (getNumber(point, i, arrImage, begin)) {
+                    trungPoint.add(point);
+                    repaint();
+                    break;
+                }
+                if (i == 4) {
+                    truotPoint.add(point);
+                    repaint();
+                }
+            }
+        } else if (isClient == CLIENT) {
+            for (int i = 0; i < 5; i++) {
+                if (getNumber(point, i, arrImage, begin)) {
+                    trungPoint.add(point);
+                    repaint();
+                    break;
+                }
+                if (i == 4) {
+                    truotPoint.add(point);
+                    repaint();
+                }
+            }
+        }
+    }
+    /*
+     * Kiem tra xem diem do da duoc click hay chua
+     */
+
+    public boolean clickedPoint(Point point) {
+        for (int i = 0; i < trungPoint.size(); i++) {
+            if (trungPoint.get(i).x == point.x && trungPoint.get(i).y == point.y) {
+                return true;
+            }
+        }
+        for (int i = 0; i < truotPoint.size(); i++) {
+            if (truotPoint.get(i).x == point.x && truotPoint.get(i).y == point.y) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void changeImage() {
