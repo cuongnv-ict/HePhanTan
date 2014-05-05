@@ -18,12 +18,6 @@ public class BanDoGame extends javax.swing.JPanel {
     /**
      * Creates new form BanDoGame
      */
-    public static final int BATDAU = 1;
-    public static final int THIETLAP = 2;
-    public static final int NHANTHUA = 3;
-    public static final int SERVER = 1;
-    public static final int CLIENT = -1;
-    public static final int DEFINITE = 0;
     /*
      * Khởi tạo file ảnh
      */
@@ -149,8 +143,8 @@ public class BanDoGame extends javax.swing.JPanel {
         anhnen = new ImageIcon(this.getClass().getResource("image/song cuon.png"));
         truot = new ImageIcon(this.getClass().getResource("image/truot.png"));
         trung = new ImageIcon(this.getClass().getResource("image/trung.png"));
-        status = THIETLAP;
-        isClient = DEFINITE;
+        status = Infomation.THIETLAP;
+        isClient = Infomation.DEFINITE;
         serial = -1;
         rival = null;
         arrRival = null;
@@ -193,9 +187,9 @@ public class BanDoGame extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void setDefaultPoint() {
-        if (isClient == DEFINITE) {
+        if (isClient == Infomation.DEFINITE) {
             return;
-        } else if (isClient == CLIENT) {
+        } else if (isClient == Infomation.CLIENT) {
             begin[0] = new Point(300, 10);
             begin[1] = new Point(475, 60);
             begin[2] = new Point(400, 85);
@@ -226,14 +220,14 @@ public class BanDoGame extends javax.swing.JPanel {
         }
     }
     /*
-     * Xac dinh xem vi tri clik la len tau nao
+     * Xac dinh xem vi tri click la len tau nao
      */
 
     public boolean getNumber(Point point, int number, int arrI[], Point arrP[]) {
-        if (isClient == DEFINITE) {
+        if (isClient == Infomation.DEFINITE) {
             return false;
         }
-        if (isClient == SERVER) {
+        if (isClient == Infomation.SERVER) {
             if (arrI[number] == 0) {
                 if ((((point.x - 10) / 25) == ((arrP[number].x - 10) / 25))
                         && (((point.y - 10) / 25) >= ((arrP[number].y - 10) / 25))
@@ -276,13 +270,13 @@ public class BanDoGame extends javax.swing.JPanel {
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
         switch (status) {
-            case THIETLAP:
+            case Infomation.THIETLAP:
                 clickThietLap(evt);
                 break;
-            case BATDAU:
+            case Infomation.BATDAU:
                 clickBatDau(evt);
                 break;
-            case NHANTHUA:
+            case Infomation.NHANTHUA:
                 break;
         }
     }//GEN-LAST:event_formMouseClicked
@@ -294,7 +288,7 @@ public class BanDoGame extends javax.swing.JPanel {
 
     private void clickBatDau(java.awt.event.MouseEvent evt) {
         if (beginClient && beginHost) {
-            if (isClient == SERVER) {
+            if (isClient == Infomation.SERVER) {
                 if (evt.getX() > 300 && evt.getX() < 550 && evt.getY() > 10 && evt.getY() < 260) {
                     Point pointClick = new Point();
                     pointClick.x = ((evt.getX() - 300) / 25) * 25 + 300;
@@ -306,6 +300,20 @@ public class BanDoGame extends javax.swing.JPanel {
                     for (int i = 0; i < 5; i++) {
                         if (getNumber(pointClick, i, arrRival, rival)) {
                             trungPoint.add(pointClick);
+                            int count = 0;
+                            for (int j = trungPoint.size() - 1; j >= 0; j--) {
+                                if (getNumber(trungPoint.get(j), i, arrRival, rival)) {
+                                    count++;
+                                }
+                            }
+                            if (count == length[i]) {
+                                for (int j = trungPoint.size() - 1; j >= 0; j--) {
+                                    if (getNumber(trungPoint.get(j), i, arrRival, rival)) {
+                                        trungPoint.remove(j);
+                                         client[i] = true;
+                                    }
+                                }
+                            }
                             repaint();
                             break;
                         }
@@ -315,7 +323,7 @@ public class BanDoGame extends javax.swing.JPanel {
                         }
                     }
                 }
-            } else if (isClient == CLIENT) {
+            } else if (isClient == Infomation.CLIENT) {
                 if (evt.getX() > 10 && evt.getX() < 260 && evt.getY() > 10 && evt.getY() < 260) {
                     Point pointClick = new Point();
                     pointClick.x = ((evt.getX() - 10) / 25) * 25 + 10;
@@ -327,6 +335,20 @@ public class BanDoGame extends javax.swing.JPanel {
                     for (int i = 0; i < 5; i++) {
                         if (getNumber(pointClick, i, arrRival, rival)) {
                             trungPoint.add(pointClick);
+                            int count = 0;
+                            for (int j = trungPoint.size() - 1; j >= 0; j--) {
+                                if (getNumber(trungPoint.get(j), i, arrRival, rival)) {
+                                    count++;
+                                }
+                            }
+                            if (count == length[i]) {
+                                for (int j = trungPoint.size() - 1; j >= 0; j--) {
+                                    if (getNumber(trungPoint.get(j), i, arrRival, rival)) {
+                                        trungPoint.remove(j);
+                                        client[i] = true;
+                                    }
+                                }
+                            }
                             repaint();
                             break;
                         }
@@ -341,29 +363,29 @@ public class BanDoGame extends javax.swing.JPanel {
     }
 
     public void setDiemBan(Point point) {
-        if (isClient == SERVER) {
-            for (int i = 0; i < 5; i++) {
-                if (getNumber(point, i, arrImage, begin)) {
-                    trungPoint.add(point);
-                    repaint();
-                    break;
+        for (int i = 0; i < 5; i++) {
+            if (getNumber(point, i, arrImage, begin)) {
+                trungPoint.add(point);
+                int count = 0;
+                for (int j = trungPoint.size() - 1; j >= 0; j--) {
+                    if (getNumber(trungPoint.get(j), i, arrImage, begin)) {
+                        count++;
+                    }
                 }
-                if (i == 4) {
-                    truotPoint.add(point);
-                    repaint();
+                if (count == length[i]) {
+                    for (int j = trungPoint.size() - 1; j >= 0; j--) {
+                        if (getNumber(trungPoint.get(j), i, arrImage, begin)) {
+                            trungPoint.remove(j);
+                            host[i] = false;
+                        }
+                    }
                 }
+                repaint();
+                break;
             }
-        } else if (isClient == CLIENT) {
-            for (int i = 0; i < 5; i++) {
-                if (getNumber(point, i, arrImage, begin)) {
-                    trungPoint.add(point);
-                    repaint();
-                    break;
-                }
-                if (i == 4) {
-                    truotPoint.add(point);
-                    repaint();
-                }
+            if (i == 4) {
+                truotPoint.add(point);
+                repaint();
             }
         }
     }
@@ -393,7 +415,7 @@ public class BanDoGame extends javax.swing.JPanel {
             }
             repaint();
         } else {
-            if (isClient == CLIENT) {
+            if (isClient == Infomation.CLIENT) {
                 if ((begin[serial].x + local[serial]) > 550) {
                     begin[serial].x = 550 - local[serial];
                 }
@@ -408,8 +430,8 @@ public class BanDoGame extends javax.swing.JPanel {
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         // TODO add your handling code here:
-        if (status == THIETLAP && serial != -1) {
-            if (isClient == SERVER) {
+        if (status == Infomation.THIETLAP && serial != -1) {
+            if (isClient == Infomation.SERVER) {
                 if (evt.getX() > 10 && evt.getX() < 260 && evt.getY() > 10 && evt.getY() < 260) {
                     int x, y;
                     if (arrImage[serial] == 0) {
@@ -430,7 +452,7 @@ public class BanDoGame extends javax.swing.JPanel {
                     begin[serial].x = ((x - 10) / 25) * 25 + 10;
                     begin[serial].y = ((y - 10) / 25) * 25 + 10;
                 }
-            } else if (isClient == CLIENT) {
+            } else if (isClient == Infomation.CLIENT) {
                 if (evt.getX() > 300 && evt.getX() < 550 && evt.getY() > 10 && evt.getY() < 260) {
                     int x, y;
                     if (arrImage[serial] == 0) {
@@ -458,7 +480,7 @@ public class BanDoGame extends javax.swing.JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
-        if (status == THIETLAP) {
+        if (status == Infomation.THIETLAP) {
             Point point = new Point(evt.getX(), evt.getY());
             for (int i = 0; i < 5; i++) {
                 if (getNumber(point, i, arrImage, begin)) {
@@ -483,7 +505,10 @@ public class BanDoGame extends javax.swing.JPanel {
             g.drawLine(300, 10 + (i * 25), 550, (i * 25) + 10);
             g.drawLine(300 + (i * 25), 10, 300 + (i * 25), 260);
         }
-        if (isClient == DEFINITE) {
+        for (int i = 0; i < truotPoint.size(); i++) {
+            g.drawImage(truot.getImage(), truotPoint.get(i).x, truotPoint.get(i).y, 25, 25, null);
+        }
+        if (isClient == Infomation.DEFINITE) {
             return;
         }
         if (host[0]) {
@@ -521,9 +546,6 @@ public class BanDoGame extends javax.swing.JPanel {
         }
         for (int i = 0; i < trungPoint.size(); i++) {
             g.drawImage(trung.getImage(), trungPoint.get(i).x, trungPoint.get(i).y, 25, 25, null);
-        }
-        for (int i = 0; i < truotPoint.size(); i++) {
-            g.drawImage(truot.getImage(), truotPoint.get(i).x, truotPoint.get(i).y, 25, 25, null);
         }
     }
 
@@ -601,8 +623,9 @@ public class BanDoGame extends javax.swing.JPanel {
 
     private ArrayList<Integer> setArr(int number) {
         ArrayList<Integer> e = new ArrayList<Integer>();
-        if (isClient == CLIENT) {
-        } else if (isClient == SERVER) {
+        if (isClient == Infomation.CLIENT) {
+            //Chua lam
+        } else if (isClient == Infomation.SERVER) {
             int row = begin[number].y / 25;
             int column = begin[number].x / 25;
             e.add(row * 10 + column);

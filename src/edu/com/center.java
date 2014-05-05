@@ -200,7 +200,7 @@ public class center extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(Port_TaoTran, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(KhoiTao, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(KhoiTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addComponent(TaoTran)
                             .addComponent(ThamGia))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -216,7 +216,7 @@ public class center extends javax.swing.JFrame {
                     .addComponent(IP_TaoTran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(tuychonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(KhoiTao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(KhoiTao, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(tuychonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Port_TaoTran)))
@@ -343,7 +343,7 @@ public class center extends javax.swing.JFrame {
             try {
                 client = ServerClient.connectServer(IP_ThamGia.getText(), Integer.parseInt(Port_ThamGia.getText()));
                 if (client != null) {
-                    bando.setIsClient(BanDoGame.CLIENT);
+                    bando.setIsClient(Infomation.CLIENT);
                     flags_thamgia = false;
                     IP_ThamGia.setEditable(false);
                     TaoTran.setEnabled(false);
@@ -409,7 +409,7 @@ public class center extends javax.swing.JFrame {
                                 client = server.accept();
                                 JOptionPane.showMessageDialog(rootPane, "Có kết nối đến máy bạn ", null, JOptionPane.INFORMATION_MESSAGE);
                                 xuly = new XuLy(client, server, area, bando, ts);
-                                bando.setIsClient(BanDoGame.SERVER);
+                                bando.setIsClient(Infomation.SERVER);
                                 bando.setXuly(xuly);
                                 bando.setLive();
                                 bando.setDefaultPoint();
@@ -503,7 +503,7 @@ public class center extends javax.swing.JFrame {
             return;
         }
         bando.setDefaultPoint();
-        bando.setStatus(BanDoGame.THIETLAP);
+        bando.setStatus(Infomation.THIETLAP);
     }//GEN-LAST:event_thietlapActionPerformed
 
     private void batdauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batdauActionPerformed
@@ -513,7 +513,7 @@ public class center extends javax.swing.JFrame {
         }
         if (bando.testLocal()) {
             xuly.sendKhoiTao(bando.getBegin(), bando.getArrImage());
-            bando.setStatus(BanDoGame.BATDAU);
+            bando.setStatus(Infomation.BATDAU);
             bando.setBeginHost(true);
             if(bando.isBeginClient()){
                 area.append("Bạn đã sẵng sàng, trận đấu bắt đầu.\n");
