@@ -310,7 +310,7 @@ public class BanDoGame extends javax.swing.JPanel {
                                 for (int j = trungPoint.size() - 1; j >= 0; j--) {
                                     if (getNumber(trungPoint.get(j), i, arrRival, rival)) {
                                         trungPoint.remove(j);
-                                         client[i] = true;
+                                        client[i] = true;
                                     }
                                 }
                             }
@@ -402,6 +402,13 @@ public class BanDoGame extends javax.swing.JPanel {
         for (int i = 0; i < truotPoint.size(); i++) {
             if (truotPoint.get(i).x == point.x && truotPoint.get(i).y == point.y) {
                 return true;
+            }
+        }
+        for (int i = 0; i < 5; i++) {
+            if (client[i] == true) {
+                if (getNumber(point, i, arrRival, rival)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -513,18 +520,28 @@ public class BanDoGame extends javax.swing.JPanel {
         }
         if (host[0]) {
             g.drawImage(tau1[arrImage[0]].getImage(), begin[0].x + XY1[arrImage[0]].x, begin[0].y + XY1[arrImage[0]].y, tau1[arrImage[0]].getImage().getWidth(this), tau1[arrImage[0]].getImage().getHeight(this), null);
+        } else {
+            g.drawImage(no1[arrImage[0]].getImage(), begin[0].x + XY1[arrImage[0]].x, begin[0].y + XY1[arrImage[0]].y, no1[arrImage[0]].getImage().getWidth(this), no1[arrImage[0]].getImage().getHeight(this), null);
         }
         if (host[1]) {
             g.drawImage(tau2[arrImage[1]].getImage(), begin[1].x + XY2[arrImage[1]].x, begin[1].y + XY2[arrImage[1]].y, tau2[arrImage[1]].getImage().getWidth(this), tau2[arrImage[1]].getImage().getHeight(this), null);
+        } else {
+            g.drawImage(no2[arrImage[1]].getImage(), begin[1].x + XY2[arrImage[1]].x, begin[1].y + XY2[arrImage[1]].y, no2[arrImage[1]].getImage().getWidth(this), no2[arrImage[1]].getImage().getHeight(this), null);
         }
         if (host[2]) {
             g.drawImage(tau3[arrImage[2]].getImage(), begin[2].x + XY3[arrImage[2]].x, begin[2].y + XY3[arrImage[2]].y, tau3[arrImage[2]].getImage().getWidth(this), tau3[arrImage[2]].getImage().getHeight(this), null);
+        } else {
+            g.drawImage(no3[arrImage[2]].getImage(), begin[2].x + XY3[arrImage[2]].x, begin[2].y + XY3[arrImage[2]].y, no3[arrImage[2]].getImage().getWidth(this), no3[arrImage[2]].getImage().getHeight(this), null);
         }
         if (host[3]) {
             g.drawImage(tau4[arrImage[3]].getImage(), begin[3].x + XY4[arrImage[3]].x, begin[3].y + XY4[arrImage[3]].y, tau4[arrImage[3]].getImage().getWidth(this), tau4[arrImage[3]].getImage().getHeight(this), null);
+        } else {
+            g.drawImage(no4[arrImage[3]].getImage(), begin[3].x + XY4[arrImage[3]].x, begin[3].y + XY4[arrImage[3]].y, no4[arrImage[3]].getImage().getWidth(this), no4[arrImage[3]].getImage().getHeight(this), null);
         }
         if (host[4]) {
             g.drawImage(tau5[arrImage[4]].getImage(), begin[4].x + XY5[arrImage[4]].x, begin[4].y + XY5[arrImage[4]].y, tau5[arrImage[4]].getImage().getWidth(this), tau5[arrImage[4]].getImage().getHeight(this), null);
+        } else {
+            g.drawImage(no5[arrImage[4]].getImage(), begin[4].x + XY5[arrImage[4]].x, begin[4].y + XY5[arrImage[4]].y, no5[arrImage[4]].getImage().getWidth(this), no5[arrImage[4]].getImage().getHeight(this), null);
         }
         if (rival == null || arrRival == null) {
             return;
@@ -623,20 +640,16 @@ public class BanDoGame extends javax.swing.JPanel {
 
     private ArrayList<Integer> setArr(int number) {
         ArrayList<Integer> e = new ArrayList<Integer>();
-        if (isClient == Infomation.CLIENT) {
-            //Chua lam
-        } else if (isClient == Infomation.SERVER) {
-            int row = begin[number].y / 25;
-            int column = begin[number].x / 25;
-            e.add(row * 10 + column);
-            if (arrImage[number] == 0) {
-                for (int i = 0; i < length[number]; i++) {
-                    e.add((row + i) * 10 + column);
-                }
-            } else {
-                for (int i = 0; i < length[number]; i++) {
-                    e.add((row) * 10 + column + i);
-                }
+        int row = begin[number].y / 25;
+        int column = begin[number].x / 25;
+        e.add(row * 10 + column);
+        if (arrImage[number] == 0) {
+            for (int i = 0; i < length[number]; i++) {
+                e.add((row + i) * 10 + column);
+            }
+        } else {
+            for (int i = 0; i < length[number]; i++) {
+                e.add((row) * 10 + column + i);
             }
         }
         return e;
