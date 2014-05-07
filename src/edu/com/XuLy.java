@@ -30,7 +30,7 @@ public class XuLy {
     private BanDoGame bando;
     private Thread ts;
 
-    public XuLy(Socket client,ServerSocket server, JTextArea area, BanDoGame bando,Thread ts) {
+    public XuLy(Socket client, ServerSocket server, JTextArea area, BanDoGame bando, Thread ts) {
         try {
             this.client = client;
             this.server = server;
@@ -50,15 +50,15 @@ public class XuLy {
 
     public void sendMessage(String msg) {
         try {
-            out.writeBytes(data.setMsg(msg)+"\n");
+            out.writeBytes(data.setMsg(msg) + "\n");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Không thể gửi dữ liệu", null, JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public void sendKhoiTao(Point []begin,int []arr) {
+    public void sendKhoiTao(Point[] begin, int[] arr) {
         try {
-            out.writeBytes(data.setMsg(begin,arr)+"\n");
+            out.writeBytes(data.setMsg(begin, arr) + "\n");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Không thể gửi dữ liệu", null, JOptionPane.ERROR_MESSAGE);
         }
@@ -68,19 +68,19 @@ public class XuLy {
         try {
             out.writeBytes(data.setClose());
             client.close();
-            if(server!=null){
+            if (server != null) {
                 server.close();
             }
         } catch (IOException ex) {
             Logger.getLogger(XuLy.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } finally {
             System.exit(0);
         }
     }
 
     public void sendDienBan(Point point) {
         try {
-            out.writeBytes(data.setMsg(point)+"\n");
+            out.writeBytes(data.setMsg(point) + "\n");
         } catch (IOException ex) {
             Logger.getLogger(XuLy.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,7 +88,7 @@ public class XuLy {
 
     public boolean listen() {
         try {
-           String msg = in.readLine();
+            String msg = in.readLine();
             switch (data.getItype(msg)) {
                 case Packet.KHOITAO:
                     this.recvKhoiTao(msg);
@@ -107,7 +107,7 @@ public class XuLy {
         } catch (IOException ex) {
             Logger.getLogger(XuLy.class.getName()).log(Level.SEVERE, null, ex);
             return false;
-        } 
+        }
     }
 
     public void recvKhoiTao(String msg) {
@@ -117,13 +117,17 @@ public class XuLy {
         bando.setArrRival(arr);
         bando.setRival(begin);
         bando.setBeginClient(true);
-         if(bando.isBeginHost()){
-                area.append("Đối thủ đã sẵng sàng, trận đấu bắt đầu.\n");
+        if (bando.isBeginHost()) {
+            area.append("Đối thủ đã sẵng sàng, trận đấu bắt đầu.\n");
+            if (bando.isFlags()) {
+                area.append("Bạn bắn trước.\n");
+            } else {
+                area.append("Đối thủ bắn trước.\n");
             }
-            else{
-                 area.append("Đối thủ đã sẵng sàng, họ đang chờ bạn đó.\n");
-            }
-           
+        } else {
+            area.append("Đối thủ đã sẵng sàng, họ đang chờ bạn đó.\n");
+        }
+
         bando.repaint();
     }
 
@@ -139,11 +143,11 @@ public class XuLy {
     public void recvDongLienKet() {
         try {
             area.append("Đối thủ đã thoát\n");
-            client.close();        
+            client.close();
         } catch (IOException ex) {
             Logger.getLogger(XuLy.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            if(server!=null){
+        } finally {
+            if (server != null) {
                 ts.start();
             }
         }

@@ -392,16 +392,16 @@ public class center extends javax.swing.JFrame {
         trungtamLayout.setHorizontalGroup(
             trungtamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trungtamLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(tuychon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tuychon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         trungtamLayout.setVerticalGroup(
             trungtamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tuychon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trungtamLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -438,6 +438,7 @@ public class center extends javax.swing.JFrame {
                 client = ServerClient.connectServer(IP_ThamGia.getText(), Integer.parseInt(Port_ThamGia.getText()));
                 if (client != null) {
                     bando.setIsClient(Infomation.CLIENT);
+                    bando.setFlags(false);
                     flags_thamgia = false;
                     IP_ThamGia.setEditable(false);
                     TaoTran.setEnabled(false);
@@ -495,6 +496,7 @@ public class center extends javax.swing.JFrame {
                     Port_TaoTran.setEditable(false);
                     flags_khoitao = false;
                     ThamGia.setEnabled(false);
+                    bando.setFlags(true);
                     IP_TaoTran.setText(InetAddress.getLocalHost().getHostAddress());
                     (ts = new Thread() {
                         @Override
@@ -583,7 +585,7 @@ public class center extends javax.swing.JFrame {
             return;
         }
         //dua vao ham su ly
-        if(text.getText().equals("")){
+        if (text.getText().equals("")) {
             return;
         }
         area.append("Ban: " + text.getText() + "\n");
@@ -609,11 +611,15 @@ public class center extends javax.swing.JFrame {
             xuly.sendKhoiTao(bando.getBegin(), bando.getArrImage());
             bando.setStatus(Infomation.BATDAU);
             bando.setBeginHost(true);
-            if(bando.isBeginClient()){
+            if (bando.isBeginClient()) {
                 area.append("Bạn đã sẵng sàng, trận đấu bắt đầu.\n");
-            }
-            else{
-                 area.append("Bạn đã sẵng sàng, vui lòng chờ đối thủ.\n");
+                if (bando.isFlags()) {
+                    area.append("Bạn bắn trước.\n");
+                } else {
+                    area.append("Đối thủ bắn trước.\n");
+                }
+            } else {
+                area.append("Bạn đã sẵng sàng, vui lòng chờ đối thủ.\n");
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Không thể thiết lập 2 tàu trùng nhau", null, JOptionPane.ERROR_MESSAGE);
