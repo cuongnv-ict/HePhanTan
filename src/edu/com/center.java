@@ -163,11 +163,14 @@ public class center extends javax.swing.JFrame {
             }
         });
 
+        area.setEditable(false);
         area.setColumns(20);
+        area.setLineWrap(true);
         area.setRows(5);
         jScrollPane1.setViewportView(area);
 
         gui.setText("Gửi");
+        gui.setEnabled(false);
         gui.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guiActionPerformed(evt);
@@ -257,6 +260,7 @@ public class center extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chơi Game", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         batdau.setText("Bắt đầu");
+        batdau.setEnabled(false);
         batdau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 batdauActionPerformed(evt);
@@ -264,8 +268,10 @@ public class center extends javax.swing.JFrame {
         });
 
         thua.setText("Nhận thua");
+        thua.setEnabled(false);
 
         thietlap.setText("Thiết lập");
+        thietlap.setEnabled(false);
         thietlap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 thietlapActionPerformed(evt);
@@ -450,6 +456,9 @@ public class center extends javax.swing.JFrame {
                     @Override
                     public void run() {
                         JOptionPane.showMessageDialog(rootPane, "Đã kết nối thành công", null, JOptionPane.INFORMATION_MESSAGE);
+                        gui.setEnabled(true);
+                        thietlap.setEnabled(true);
+                        batdau.setEnabled(true);
                         bando.setLive();
                         bando.setXuly(xuly);
                         bando.setDefaultPoint();
@@ -504,6 +513,9 @@ public class center extends javax.swing.JFrame {
                             try {
                                 client = server.accept();
                                 JOptionPane.showMessageDialog(rootPane, "Có kết nối đến máy bạn ", null, JOptionPane.INFORMATION_MESSAGE);
+                                gui.setEnabled(true);
+                                thietlap.setEnabled(true);
+                                batdau.setEnabled(true);
                                 xuly = new XuLy(client, server, area, bando, ts);
                                 bando.setIsClient(Infomation.SERVER);
                                 bando.setXuly(xuly);

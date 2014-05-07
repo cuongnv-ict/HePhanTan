@@ -246,7 +246,9 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="area">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
+                    <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
                 </Component>
@@ -257,6 +259,7 @@
             <Component class="javax.swing.JButton" name="gui">
               <Properties>
                 <Property name="text" type="java.lang.String" value="G&#x1eed;i"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guiActionPerformed"/>
@@ -379,6 +382,7 @@
             <Component class="javax.swing.JButton" name="batdau">
               <Properties>
                 <Property name="text" type="java.lang.String" value="B&#x1eaf;t &#x111;&#x1ea7;u"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="batdauActionPerformed"/>
@@ -387,11 +391,13 @@
             <Component class="javax.swing.JButton" name="thua">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nh&#x1ead;n thua"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="thietlap">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Thi&#x1ebf;t l&#x1ead;p"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="thietlapActionPerformed"/>
