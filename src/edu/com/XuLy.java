@@ -29,14 +29,16 @@ public class XuLy {
     private Packet data;
     private BanDoGame bando;
     private Thread ts;
+    private center ce;
 
-    public XuLy(Socket client, ServerSocket server, JTextArea area, BanDoGame bando, Thread ts) {
+    public XuLy(Socket client, ServerSocket server, JTextArea area, BanDoGame bando, Thread ts,center ce) {
         try {
             this.client = client;
             this.server = server;
             this.area = area;
             this.bando = bando;
             this.ts = ts;
+            this.ce = ce;
             data = new Packet();
             in = new DataInputStream(client.getInputStream());
             out = new DataOutputStream(client.getOutputStream());
@@ -118,6 +120,7 @@ public class XuLy {
         bando.setRival(begin);
         bando.setBeginClient(true);
         if (bando.isBeginHost()) {
+            ce.setThua(true);
             area.append("Đối thủ đã sẵng sàng, trận đấu bắt đầu.\n");
             if (bando.isFlags()) {
                 area.append("Bạn bắn trước.\n");
@@ -143,6 +146,10 @@ public class XuLy {
     public void recvDongLienKet() {
         try {
             area.append("Đối thủ đã thoát\n");
+            ce.setBatdau(false);
+            ce.setGui(false);
+            ce.setThietlap(false);
+            ce.setThua(false);
             client.close();
         } catch (IOException ex) {
             Logger.getLogger(XuLy.class.getName()).log(Level.SEVERE, null, ex);

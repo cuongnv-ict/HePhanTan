@@ -19,6 +19,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -451,7 +452,7 @@ public class center extends javax.swing.JFrame {
                     Port_ThamGia.setEditable(false);
                     KetNoi.setText("Hủy kết nối");
                 }
-                xuly = new XuLy(client, null, area, bando, ts);
+                xuly = new XuLy(client, null, area, bando, ts,center.this);
                 (ts = new Thread() {
                     @Override
                     public void run() {
@@ -516,7 +517,7 @@ public class center extends javax.swing.JFrame {
                                 gui.setEnabled(true);
                                 thietlap.setEnabled(true);
                                 batdau.setEnabled(true);
-                                xuly = new XuLy(client, server, area, bando, ts);
+                                xuly = new XuLy(client, server, area, bando, ts, center.this);
                                 bando.setIsClient(Infomation.SERVER);
                                 bando.setXuly(xuly);
                                 bando.setLive();
@@ -623,8 +624,11 @@ public class center extends javax.swing.JFrame {
             xuly.sendKhoiTao(bando.getBegin(), bando.getArrImage());
             bando.setStatus(Infomation.BATDAU);
             bando.setBeginHost(true);
+            thietlap.setEnabled(false);
+            batdau.setEnabled(false);
             if (bando.isBeginClient()) {
                 area.append("Bạn đã sẵng sàng, trận đấu bắt đầu.\n");
+                thua.setEnabled(true);
                 if (bando.isFlags()) {
                     area.append("Bạn bắn trước.\n");
                 } else {
@@ -638,6 +642,22 @@ public class center extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_batdauActionPerformed
+
+    public void setBatdau(boolean batdau) {
+        this.batdau.setEnabled(batdau);
+    }
+
+    public void setGui(boolean gui) {
+        this.gui.setEnabled(gui);
+    }
+
+    public void setThietlap(boolean thietlap) {
+        this.thietlap.setEnabled(thietlap);
+    }
+
+    public void setThua(boolean thua) {
+        this.thua.setEnabled(thua);
+    }
 
     private void thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thoatActionPerformed
         // TODO add your handling code here:
