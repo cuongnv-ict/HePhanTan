@@ -82,9 +82,11 @@ public class BanDoGame extends javax.swing.JPanel {
     private ArrayList<Point> trungPoint;
     private ArrayList<Point> truotPoint;
     private XuLy xuly;
+    private center ce;
 
-    public BanDoGame() {
+    public BanDoGame(center ce) {
         initComponents();
+        this.ce = ce;
         tau1 = new ImageIcon[2];
         tau2 = new ImageIcon[2];
         tau3 = new ImageIcon[2];
@@ -277,6 +279,7 @@ public class BanDoGame extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
+        System.out.println(status);
         switch (status) {
             case Infomation.THIETLAP:
                 clickThietLap(evt);
@@ -301,6 +304,7 @@ public class BanDoGame extends javax.swing.JPanel {
             } else {
                 return;
             }
+            System.out.println("ok");
             if (isClient == Infomation.SERVER) {
                 if (evt.getX() > 300 && evt.getX() < 550 && evt.getY() > 10 && evt.getY() < 260) {
                     Point pointClick = new Point();
@@ -325,6 +329,9 @@ public class BanDoGame extends javax.swing.JPanel {
                                         trungPoint.remove(j);
                                         client[i] = true;
                                     }
+                                }
+                                if (client[0] && client[1] && client[2] && client[3] && client[4]) {
+                                    ce.setArea("Bạn đã chiến thắng.");
                                 }
                             }
                             repaint();
@@ -361,6 +368,9 @@ public class BanDoGame extends javax.swing.JPanel {
                                         client[i] = true;
                                     }
                                 }
+                                if (client[0] && client[1] && client[2] && client[3] && client[4]) {
+                                    ce.setArea("Bạn đã chiến thắng.");
+                                }
                             }
                             repaint();
                             break;
@@ -392,6 +402,9 @@ public class BanDoGame extends javax.swing.JPanel {
                             trungPoint.remove(j);
                             host[i] = false;
                         }
+                    }
+                    if (host[0] ^ host[1] ^ host[2] ^ host[3] ^ host[4]) {
+                        ce.setArea("Bạn đã thua.");
                     }
                 }
                 repaint();

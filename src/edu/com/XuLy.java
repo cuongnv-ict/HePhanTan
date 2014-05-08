@@ -23,7 +23,6 @@ public class XuLy {
 
     private Socket client;
     private ServerSocket server;
-    private JTextArea area;
     private DataInputStream in;
     private DataOutputStream out;
     private Packet data;
@@ -31,11 +30,10 @@ public class XuLy {
     private Thread ts;
     private center ce;
 
-    public XuLy(Socket client, ServerSocket server, JTextArea area, BanDoGame bando, Thread ts,center ce) {
+    public XuLy(Socket client, ServerSocket server, BanDoGame bando, Thread ts,center ce) {
         try {
             this.client = client;
             this.server = server;
-            this.area = area;
             this.bando = bando;
             this.ts = ts;
             this.ce = ce;
@@ -121,21 +119,21 @@ public class XuLy {
         bando.setBeginClient(true);
         if (bando.isBeginHost()) {
             ce.setThua(true);
-            area.append("Đối thủ đã sẵng sàng, trận đấu bắt đầu.\n");
+            ce.setArea("Đối thủ đã sẵng sàng, trận đấu bắt đầu.");
             if (bando.isFlags()) {
-                area.append("Bạn bắn trước.\n");
+                ce.setArea("Bạn bắn trước.");
             } else {
-                area.append("Đối thủ bắn trước.\n");
+                ce.setArea("Đối thủ bắn trước.");
             }
         } else {
-            area.append("Đối thủ đã sẵng sàng, họ đang chờ bạn đó.\n");
+            ce.setArea("Đối thủ đã sẵng sàng, họ đang chờ bạn đó.");
         }
 
         bando.repaint();
     }
 
     public void recvTinNhan(String msg) {
-        area.append("Đối thủ: " + data.getMsg(msg) + "\n");
+        ce.setArea("Đối thủ: " + data.getMsg(msg));
     }
 
     public void recvToaDo(String msg) {
@@ -145,7 +143,7 @@ public class XuLy {
 
     public void recvDongLienKet() {
         try {
-            area.append("Đối thủ đã thoát\n");
+            ce.setArea("Đối thủ đã thoát");
             ce.setBatdau(false);
             ce.setGui(false);
             ce.setThietlap(false);

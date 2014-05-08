@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -56,7 +57,7 @@ public class center extends javax.swing.JFrame {
                 }
             }
         });
-        bando = new BanDoGame();
+        bando = new BanDoGame(center.this);
         TuyChon.add(TaoTran);
         TuyChon.add(ThamGia);
         bando.setSize(560, 270);
@@ -72,6 +73,10 @@ public class center extends javax.swing.JFrame {
         setKetNoi(false);
         flags_khoitao = true;
         flags_thamgia = true;
+    }
+
+    public void setArea(String ask) {
+        this.area.append(ask+"\n");
     }
 
     /**
@@ -452,7 +457,7 @@ public class center extends javax.swing.JFrame {
                     Port_ThamGia.setEditable(false);
                     KetNoi.setText("Hủy kết nối");
                 }
-                xuly = new XuLy(client, null, area, bando, ts,center.this);
+                xuly = new XuLy(client, null, bando, ts,center.this);
                 (ts = new Thread() {
                     @Override
                     public void run() {
@@ -517,7 +522,7 @@ public class center extends javax.swing.JFrame {
                                 gui.setEnabled(true);
                                 thietlap.setEnabled(true);
                                 batdau.setEnabled(true);
-                                xuly = new XuLy(client, server, area, bando, ts, center.this);
+                                xuly = new XuLy(client, server, bando, ts, center.this);
                                 bando.setIsClient(Infomation.SERVER);
                                 bando.setXuly(xuly);
                                 bando.setLive();
