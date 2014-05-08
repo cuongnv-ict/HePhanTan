@@ -42,15 +42,6 @@ public class BanDoGame extends javax.swing.JPanel {
     /*
      * 
      */
-//    private boolean flags;//Co luot choi
-
-//    public boolean isFlags() {
-//        return flags;
-//    }
-//
-//    public void setFlags(boolean flags) {
-//        this.flags = flags;
-//    }
     private boolean beginHost;
     private boolean beginClient;
     /*
@@ -83,6 +74,15 @@ public class BanDoGame extends javax.swing.JPanel {
     private ArrayList<Point> truotPoint;
     private XuLy xuly;
     private center ce;
+    private boolean flags;
+
+    public boolean isFlags() {
+        return flags;
+    }
+
+    public void setFlags(boolean flags) {
+        this.flags = flags;
+    }
 
     public BanDoGame(center ce) {
         initComponents();
@@ -228,6 +228,8 @@ public class BanDoGame extends javax.swing.JPanel {
             host[i] = true;
             client[i] = false;
         }
+        trungPoint.removeAll(trungPoint);
+        truotPoint.removeAll(truotPoint);
     }
     /*
      * Xac dinh xem vi tri click la len tau nao
@@ -299,7 +301,7 @@ public class BanDoGame extends javax.swing.JPanel {
     private void clickBatDau(java.awt.event.MouseEvent evt) {
         if (beginClient && beginHost) {
             if (isClient == Infomation.SERVER) {
-                if (evt.getX() > 300 && evt.getX() < 550 && evt.getY() > 10 && evt.getY() < 260) {
+                if (evt.getX() > 300 && evt.getX() < 550 && evt.getY() > 10 && evt.getY() < 260 && flags) {
                     Point pointClick = new Point();
                     pointClick.x = ((evt.getX() - 300) / 25) * 25 + 300;
                     pointClick.y = ((evt.getY() - 10) / 25) * 25 + 10;
@@ -307,6 +309,7 @@ public class BanDoGame extends javax.swing.JPanel {
                         return;
                     }
                     xuly.sendDienBan(pointClick);
+                    flags = false;
                     for (int i = 0; i < 5; i++) {
                         if (getNumber(pointClick, i, arrRival, rival)) {
                             trungPoint.add(pointClick);
@@ -325,6 +328,8 @@ public class BanDoGame extends javax.swing.JPanel {
                                 }
                                 if (client[0] && client[1] && client[2] && client[3] && client[4]) {
                                     ce.setArea("Bạn đã chiến thắng.");
+                                    setVictory();
+                                    flags = true;
                                 }
                             }
                             repaint();
@@ -337,7 +342,7 @@ public class BanDoGame extends javax.swing.JPanel {
                     }
                 }
             } else if (isClient == Infomation.CLIENT) {
-                if (evt.getX() > 10 && evt.getX() < 260 && evt.getY() > 10 && evt.getY() < 260) {
+                if (evt.getX() > 10 && evt.getX() < 260 && evt.getY() > 10 && evt.getY() < 260 && flags) {
                     Point pointClick = new Point();
                     pointClick.x = ((evt.getX() - 10) / 25) * 25 + 10;
                     pointClick.y = ((evt.getY() - 10) / 25) * 25 + 10;
@@ -345,6 +350,7 @@ public class BanDoGame extends javax.swing.JPanel {
                         return;
                     }
                     xuly.sendDienBan(pointClick);
+                    flags = false;
                     for (int i = 0; i < 5; i++) {
                         if (getNumber(pointClick, i, arrRival, rival)) {
                             trungPoint.add(pointClick);
@@ -363,6 +369,8 @@ public class BanDoGame extends javax.swing.JPanel {
                                 }
                                 if (client[0] && client[1] && client[2] && client[3] && client[4]) {
                                     ce.setArea("Bạn đã chiến thắng.");
+                                    setVictory();
+                                    flags = true;
                                 }
                             }
                             repaint();
@@ -379,6 +387,7 @@ public class BanDoGame extends javax.swing.JPanel {
     }
 
     public void setDiemBan(Point point) {
+        flags = true;
         for (int i = 0; i < 5; i++) {
             if (getNumber(point, i, arrImage, begin)) {
                 trungPoint.add(point);
@@ -395,8 +404,10 @@ public class BanDoGame extends javax.swing.JPanel {
                             host[i] = false;
                         }
                     }
-                    if (host[0] ^ host[1] ^ host[2] ^ host[3] ^ host[4]) {
+                    if (!host[0] && !host[1] && !host[2] && !host[3] && !host[4]) {
                         ce.setArea("Bạn đã thua.");
+                        setVictory();
+                        flags = false;
                     }
                 }
                 repaint();
@@ -407,6 +418,14 @@ public class BanDoGame extends javax.swing.JPanel {
                 repaint();
             }
         }
+    }
+
+    public void setVictory() {
+        ce.setThua(false);
+        ce.setThietlap(true);
+        beginClient = false;
+        beginHost = false;
+        status = Infomation.NHANTHUA;
     }
     /*
      * Kiem tra xem diem do da duoc click hay chua
@@ -579,6 +598,23 @@ public class BanDoGame extends javax.swing.JPanel {
         }
         if (client[4]) {
             g.drawImage(no5[arrRival[4]].getImage(), rival[4].x + XY5[arrRival[4]].x, rival[4].y + XY5[arrRival[4]].y, no5[arrRival[4]].getImage().getWidth(this), no5[arrRival[4]].getImage().getHeight(this), null);
+        }
+        if (status==Infomation.NHANTHUA) {
+            if (!client[0]) {
+                g.drawImage(tau1[arrRival[0]].getImage(), rival[0].x + XY1[arrRival[0]].x, rival[0].y + XY1[arrRival[0]].y, tau1[arrRival[0]].getImage().getWidth(this), tau1[arrRival[0]].getImage().getHeight(this), null);
+            }
+            if (!client[1]) {
+                g.drawImage(tau2[arrRival[1]].getImage(), rival[1].x + XY2[arrRival[1]].x, rival[1].y + XY2[arrRival[1]].y, tau2[arrRival[1]].getImage().getWidth(this), tau2[arrRival[1]].getImage().getHeight(this), null);
+            }
+            if (!client[2]) {
+                g.drawImage(tau3[arrRival[2]].getImage(), rival[2].x + XY3[arrRival[2]].x, rival[2].y + XY3[arrRival[2]].y, tau3[arrRival[2]].getImage().getWidth(this), tau3[arrRival[2]].getImage().getHeight(this), null);
+            }
+            if (!client[3]) {
+                g.drawImage(tau4[arrRival[3]].getImage(), rival[3].x + XY4[arrRival[3]].x, rival[3].y + XY4[arrRival[3]].y, tau4[arrRival[3]].getImage().getWidth(this), tau4[arrRival[3]].getImage().getHeight(this), null);
+            }
+            if (!client[4]) {
+                g.drawImage(tau5[arrRival[4]].getImage(), rival[4].x + XY5[arrRival[4]].x, rival[4].y + XY5[arrRival[4]].y, tau5[arrRival[4]].getImage().getWidth(this), tau5[arrRival[4]].getImage().getHeight(this), null);
+            }
         }
         for (int i = 0; i < trungPoint.size(); i++) {
             g.drawImage(trung.getImage(), trungPoint.get(i).x, trungPoint.get(i).y, 25, 25, null);

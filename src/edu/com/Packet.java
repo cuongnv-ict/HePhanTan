@@ -14,8 +14,9 @@ public class Packet {
 
     public static final int TINNHAN = 1;// Ma dùng dể gửi tin nhắn
     public static final int KHOITAO = 2;// Mã dùng đẻ gửi tọa độ các tàu
-    public static final int TOADO = 3; //Mã tạo độ bắn
+    public static final int TOADO = 5; //Mã tạo độ bắn
     public static final int DONGKETNOI = 4;//Mã đóng kết nối
+    public static final int NHANTHUA = 3;
     private int iType;//Loai goi tin
     private String msg;//Noi dung tin nhan
     /*
@@ -84,4 +85,8 @@ public class Packet {
         this.msg = String.valueOf(DONGKETNOI);
         return this.msg;
     }
+    public String setNhanThua() {
+        this.msg = String.valueOf(NHANTHUA);
+        return this.msg;
+    } 
 }

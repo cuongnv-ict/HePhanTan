@@ -30,7 +30,7 @@ public class XuLy {
     private Thread ts;
     private center ce;
 
-    public XuLy(Socket client, ServerSocket server, BanDoGame bando, Thread ts,center ce) {
+    public XuLy(Socket client, ServerSocket server, BanDoGame bando, Thread ts, center ce) {
         try {
             this.client = client;
             this.server = server;
@@ -86,6 +86,14 @@ public class XuLy {
         }
     }
 
+    public void sendNhanThua() {
+        try {
+            out.writeBytes(data.setNhanThua() + "\n");
+        } catch (IOException ex) {
+            Logger.getLogger(XuLy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public boolean listen() {
         try {
             String msg = in.readLine();
@@ -101,6 +109,9 @@ public class XuLy {
                     break;
                 case Packet.DONGKETNOI:
                     this.recvDongLienKet();
+                    break;
+                case Packet.NHANTHUA:
+                    this.recvNhanThua();
                     break;
             }
             return true;
@@ -120,11 +131,11 @@ public class XuLy {
         if (bando.isBeginHost()) {
             ce.setThua(true);
             ce.setArea("Đối thủ đã sẵng sàng, trận đấu bắt đầu.");
-//            if (bando.isFlags()) {
-//                ce.setArea("Bạn bắn trước.");
-//            } else {
-//                ce.setArea("Đối thủ bắn trước.");
-//            }
+            if (bando.isFlags()) {
+                ce.setArea("Bạn bắn trước.");
+            } else {
+                ce.setArea("Đối thủ bắn trước.");
+            }
         } else {
             ce.setArea("Đối thủ đã sẵng sàng, họ đang chờ bạn đó.");
         }
@@ -156,5 +167,11 @@ public class XuLy {
                 ts.start();
             }
         }
+    }
+
+    public void recvNhanThua() {
+        bando.setVictory();
+        ce.setArea("Đối thủ đã xin hàng, bạn dành chiến thắng.");
+        bando.setFlags(true);
     }
 }

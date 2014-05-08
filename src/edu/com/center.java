@@ -275,6 +275,11 @@ public class center extends javax.swing.JFrame {
 
         thua.setText("Nhận thua");
         thua.setEnabled(false);
+        thua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thuaActionPerformed(evt);
+            }
+        });
 
         thietlap.setText("Thiết lập");
         thietlap.setEnabled(false);
@@ -449,6 +454,7 @@ public class center extends javax.swing.JFrame {
             try {
                 client = ServerClient.connectServer(IP_ThamGia.getText(), Integer.parseInt(Port_ThamGia.getText()));
                 if (client != null) {
+                    bando.setFlags(false);
                     bando.setIsClient(Infomation.CLIENT);
                     flags_thamgia = false;
                     IP_ThamGia.setEditable(false);
@@ -508,9 +514,9 @@ public class center extends javax.swing.JFrame {
                 if (server != null) {
                     KhoiTao.setText("Hủy kết nối");
                     Port_TaoTran.setEditable(false);
+                    bando.setFlags(true);
                     flags_khoitao = false;
                     ThamGia.setEnabled(false);
-//                    bando.setFlags(true);
                     IP_TaoTran.setText(InetAddress.getLocalHost().getHostAddress());
                     (ts = new Thread() {
                         @Override
@@ -616,7 +622,9 @@ public class center extends javax.swing.JFrame {
             return;
         }
         bando.setDefaultPoint();
+        bando.setLive();
         bando.setStatus(Infomation.THIETLAP);
+        batdau.setEnabled(true);
     }//GEN-LAST:event_thietlapActionPerformed
 
     private void batdauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batdauActionPerformed
@@ -633,11 +641,11 @@ public class center extends javax.swing.JFrame {
             if (bando.isBeginClient()) {
                 area.append("Bạn đã sẵng sàng, trận đấu bắt đầu.\n");
                 thua.setEnabled(true);
-//                if () {
-//                    area.append("Bạn bắn trước.\n");
-//                } else {
-//                    area.append("Đối thủ bắn trước.\n");
-//                }
+                if (bando.isFlags()) {
+                    area.append("Bạn bắn trước.\n");
+                } else {
+                    area.append("Đối thủ bắn trước.\n");
+                }
             } else {
                 area.append("Bạn đã sẵng sàng, vui lòng chờ đối thủ.\n");
             }
@@ -671,6 +679,15 @@ public class center extends javax.swing.JFrame {
             xuly.sendClose();
         }
     }//GEN-LAST:event_thoatActionPerformed
+
+    private void thuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thuaActionPerformed
+        // TODO add your handling code here:
+        bando.setVictory();
+        area.append("Bạn đã đầu hàng.");
+        xuly.sendNhanThua();
+        bando.setFlags(false);
+        bando.repaint();
+    }//GEN-LAST:event_thuaActionPerformed
 
     /**
      * @param args the command line arguments
