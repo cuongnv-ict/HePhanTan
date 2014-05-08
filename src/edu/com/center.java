@@ -19,6 +19,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -76,7 +77,7 @@ public class center extends javax.swing.JFrame {
     }
 
     public void setArea(String ask) {
-        this.area.append(ask+"\n");
+        this.area.append(ask + "\n");
     }
 
     /**
@@ -113,15 +114,15 @@ public class center extends javax.swing.JFrame {
         thua = new javax.swing.JButton();
         thietlap = new javax.swing.JButton();
         thoat = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        loai1 = new javax.swing.JLabel();
+        loai2 = new javax.swing.JLabel();
+        loai5 = new javax.swing.JLabel();
+        loai3 = new javax.swing.JLabel();
+        loai6 = new javax.swing.JLabel();
+        danban = new javax.swing.JLabel();
+        loai8 = new javax.swing.JLabel();
+        loai7 = new javax.swing.JLabel();
+        loai4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -296,24 +297,71 @@ public class center extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan.png"))); // NOI18N
+        loai1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan1.png"))); // NOI18N
+        loai1.setToolTipText("Loại đạn thường.\nGiá: 0$");
+        loai1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loai1MouseClicked(evt);
+            }
+        });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan.png"))); // NOI18N
-        jLabel6.setToolTipText("");
+        loai2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan2.png"))); // NOI18N
+        loai2.setToolTipText("Đạn hỏa lôi.\nKhi bắn chúng tàu sẽ khiến tàu đó chìm.\nGiá: 100$");
+        loai2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loai2MouseClicked(evt);
+            }
+        });
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan.png"))); // NOI18N
+        loai5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan5.png"))); // NOI18N
+        loai5.setToolTipText("Đạn hỏa mù. Nếu bắn chúng tàu địch sẽ làm cho đối thủ không dùng được các loại đạn trong 3 lượt tiếp theo, nếu trượt thì 1 lượt tiếp theo. Giá: 100$");
+        loai5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loai5MouseClicked(evt);
+            }
+        });
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan.png"))); // NOI18N
+        loai3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan3.png"))); // NOI18N
+        loai3.setToolTipText("Đạn mắt thần.Phát bắn chắc chắn chúng tàu địch.Giá: 100$");
+        loai3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loai3MouseClicked(evt);
+            }
+        });
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan.png"))); // NOI18N
+        loai6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan6.png"))); // NOI18N
+        loai6.setToolTipText("Đạn liên hoàn. Khi bắn có xác suất bắn thêm từ 0-3 vị chí xung quanh điểm bắn. Giá: 100$");
+        loai6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loai6MouseClicked(evt);
+            }
+        });
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan.png"))); // NOI18N
+        danban.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan1.png"))); // NOI18N
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan.png"))); // NOI18N
+        loai8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan8.png"))); // NOI18N
+        loai8.setToolTipText("Đạn thưởng phạt. Nếu bắn chúng khiến tiền thưởng 3 lượt bắn tiếp theo của đối thủ giảm một nửa,nếu trượt  khiến tiền thưởng 3 lượt bắn tiếp theo của bản thân giảm một nửa. Giá: 100$");
+        loai8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loai8MouseClicked(evt);
+            }
+        });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan.png"))); // NOI18N
+        loai7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan7.png"))); // NOI18N
+        loai7.setToolTipText("Đạn thêm lượt. Nếu bắn chúng tàu địch có xác suất từ 0%-25% được bắn thêm lần nữa. Giá: 100$");
+        loai7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loai7MouseClicked(evt);
+            }
+        });
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan.png"))); // NOI18N
+        loai4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan4.png"))); // NOI18N
+        loai4.setToolTipText("Đạn tiền tài. Nếu bắn chúng tàu đích có xác suất nhận được từ 10$-200$. Giá 100$");
+        loai4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loai4MouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Loại đạn sẽ bắn :");
@@ -331,28 +379,28 @@ public class center extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loai1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loai5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(loai2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(loai3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(loai6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(loai7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loai8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loai4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(danban, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
@@ -379,10 +427,10 @@ public class center extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(loai2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(loai1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(loai3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(loai4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -394,12 +442,12 @@ public class center extends javax.swing.JFrame {
                         .addComponent(thoat))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel11)
+                            .addComponent(loai6)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(loai5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(loai8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(loai7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(danban, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
@@ -462,7 +510,7 @@ public class center extends javax.swing.JFrame {
                     Port_ThamGia.setEditable(false);
                     KetNoi.setText("Hủy kết nối");
                 }
-                xuly = new XuLy(client, null, bando, ts,center.this);
+                xuly = new XuLy(client, null, bando, ts, center.this);
                 (ts = new Thread() {
                     @Override
                     public void run() {
@@ -689,6 +737,46 @@ public class center extends javax.swing.JFrame {
         bando.repaint();
     }//GEN-LAST:event_thuaActionPerformed
 
+    private void loai1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai1MouseClicked
+        // TODO add your handling code here:
+        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan1.png")));
+    }//GEN-LAST:event_loai1MouseClicked
+
+    private void loai2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai2MouseClicked
+        // TODO add your handling code here:
+        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan2.png")));
+    }//GEN-LAST:event_loai2MouseClicked
+
+    private void loai3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai3MouseClicked
+        // TODO add your handling code here:
+        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan3.png")));
+    }//GEN-LAST:event_loai3MouseClicked
+
+    private void loai4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai4MouseClicked
+        // TODO add your handling code here:
+        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan4.png")));
+    }//GEN-LAST:event_loai4MouseClicked
+
+    private void loai5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai5MouseClicked
+        // TODO add your handling code here:
+        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan5.png")));
+    }//GEN-LAST:event_loai5MouseClicked
+
+    private void loai6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai6MouseClicked
+        // TODO add your handling code here:
+        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan6.png")));
+    }//GEN-LAST:event_loai6MouseClicked
+
+    private void loai7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai7MouseClicked
+        // TODO add your handling code here:
+        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan7.png")));
+    }//GEN-LAST:event_loai7MouseClicked
+
+    private void loai8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai8MouseClicked
+        // TODO add your handling code here:
+        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan8.png")));
+    }//GEN-LAST:event_loai8MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -736,26 +824,26 @@ public class center extends javax.swing.JFrame {
     private javax.swing.ButtonGroup TuyChon;
     private javax.swing.JTextArea area;
     private javax.swing.JButton batdau;
+    private javax.swing.JLabel danban;
     private javax.swing.JButton gui;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel loai1;
+    private javax.swing.JLabel loai2;
+    private javax.swing.JLabel loai3;
+    private javax.swing.JLabel loai4;
+    private javax.swing.JLabel loai5;
+    private javax.swing.JLabel loai6;
+    private javax.swing.JLabel loai7;
+    private javax.swing.JLabel loai8;
     private javax.swing.JTextField text;
     private javax.swing.JButton thietlap;
     private javax.swing.JButton thoat;
