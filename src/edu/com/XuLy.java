@@ -120,11 +120,11 @@ public class XuLy {
         if (bando.isBeginHost()) {
             ce.setThua(true);
             ce.setArea("Đối thủ đã sẵng sàng, trận đấu bắt đầu.");
-            if (bando.isFlags()) {
-                ce.setArea("Bạn bắn trước.");
-            } else {
-                ce.setArea("Đối thủ bắn trước.");
-            }
+//            if (bando.isFlags()) {
+//                ce.setArea("Bạn bắn trước.");
+//            } else {
+//                ce.setArea("Đối thủ bắn trước.");
+//            }
         } else {
             ce.setArea("Đối thủ đã sẵng sàng, họ đang chờ bạn đó.");
         }

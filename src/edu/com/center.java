@@ -450,7 +450,6 @@ public class center extends javax.swing.JFrame {
                 client = ServerClient.connectServer(IP_ThamGia.getText(), Integer.parseInt(Port_ThamGia.getText()));
                 if (client != null) {
                     bando.setIsClient(Infomation.CLIENT);
-                    bando.setFlags(false);
                     flags_thamgia = false;
                     IP_ThamGia.setEditable(false);
                     TaoTran.setEnabled(false);
@@ -511,7 +510,7 @@ public class center extends javax.swing.JFrame {
                     Port_TaoTran.setEditable(false);
                     flags_khoitao = false;
                     ThamGia.setEnabled(false);
-                    bando.setFlags(true);
+//                    bando.setFlags(true);
                     IP_TaoTran.setText(InetAddress.getLocalHost().getHostAddress());
                     (ts = new Thread() {
                         @Override
@@ -634,11 +633,11 @@ public class center extends javax.swing.JFrame {
             if (bando.isBeginClient()) {
                 area.append("Bạn đã sẵng sàng, trận đấu bắt đầu.\n");
                 thua.setEnabled(true);
-                if (bando.isFlags()) {
-                    area.append("Bạn bắn trước.\n");
-                } else {
-                    area.append("Đối thủ bắn trước.\n");
-                }
+//                if () {
+//                    area.append("Bạn bắn trước.\n");
+//                } else {
+//                    area.append("Đối thủ bắn trước.\n");
+//                }
             } else {
                 area.append("Bạn đã sẵng sàng, vui lòng chờ đối thủ.\n");
             }

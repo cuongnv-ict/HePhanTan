@@ -42,15 +42,15 @@ public class BanDoGame extends javax.swing.JPanel {
     /*
      * 
      */
-    private boolean flags;//Co luot choi
+//    private boolean flags;//Co luot choi
 
-    public boolean isFlags() {
-        return flags;
-    }
-
-    public void setFlags(boolean flags) {
-        this.flags = flags;
-    }
+//    public boolean isFlags() {
+//        return flags;
+//    }
+//
+//    public void setFlags(boolean flags) {
+//        this.flags = flags;
+//    }
     private boolean beginHost;
     private boolean beginClient;
     /*
@@ -279,7 +279,6 @@ public class BanDoGame extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        System.out.println(status);
         switch (status) {
             case Infomation.THIETLAP:
                 clickThietLap(evt);
@@ -299,12 +298,6 @@ public class BanDoGame extends javax.swing.JPanel {
 
     private void clickBatDau(java.awt.event.MouseEvent evt) {
         if (beginClient && beginHost) {
-            if (flags) {
-                flags = false;
-            } else {
-                return;
-            }
-            System.out.println("ok");
             if (isClient == Infomation.SERVER) {
                 if (evt.getX() > 300 && evt.getX() < 550 && evt.getY() > 10 && evt.getY() < 260) {
                     Point pointClick = new Point();
@@ -386,7 +379,6 @@ public class BanDoGame extends javax.swing.JPanel {
     }
 
     public void setDiemBan(Point point) {
-        flags = true;
         for (int i = 0; i < 5; i++) {
             if (getNumber(point, i, arrImage, begin)) {
                 trungPoint.add(point);
