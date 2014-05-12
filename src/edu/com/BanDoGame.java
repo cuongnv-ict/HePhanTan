@@ -305,14 +305,20 @@ public class BanDoGame extends javax.swing.JPanel {
                     Point pointClick = new Point();
                     pointClick.x = ((evt.getX() - 300) / 25) * 25 + 300;
                     pointClick.y = ((evt.getY() - 10) / 25) * 25 + 10;
+                    if (ce.getLoaiDan() == Infomation.LOAI3) {
+                        pointClick = setLoaiDan3();
+                    }
                     if (clickedPoint(pointClick)) {
                         return;
                     }
-                    xuly.sendDienBan(pointClick);
-                    flags = false;
                     for (int i = 0; i < 5; i++) {
                         if (getNumber(pointClick, i, arrRival, rival)) {
                             trungPoint.add(pointClick);
+                            xulyLoaiDan(pointClick, true, true, i);
+                            xuly.sendDienBan(pointClick, ce.getLoaiDan(), flags);
+                            ce.addMoney(10);
+                            ce.setShoot();
+                            flags = false;
                             int count = 0;
                             for (int j = trungPoint.size() - 1; j >= 0; j--) {
                                 if (getNumber(trungPoint.get(j), i, arrRival, rival)) {
@@ -323,20 +329,25 @@ public class BanDoGame extends javax.swing.JPanel {
                                 for (int j = trungPoint.size() - 1; j >= 0; j--) {
                                     if (getNumber(trungPoint.get(j), i, arrRival, rival)) {
                                         trungPoint.remove(j);
-                                        client[i] = true;
                                     }
+                                    client[i] = true;
                                 }
-                                if (client[0] && client[1] && client[2] && client[3] && client[4]) {
-                                    ce.setArea("Bạn đã chiến thắng.");
-                                    setVictory();
-                                    flags = true;
-                                }
+                            }
+                            if (client[0] && client[1] && client[2] && client[3] && client[4]) {
+                                ce.setArea("Bạn đã chiến thắng.");
+                                setVictory();
+                                flags = true;
                             }
                             repaint();
                             break;
                         }
                         if (i == 4) {
                             truotPoint.add(pointClick);
+                            xulyLoaiDan(pointClick, true, false, -1);
+                            xuly.sendDienBan(pointClick, ce.getLoaiDan(), flags);
+                            ce.addMoney(10);
+                            ce.setShoot();
+                            flags = false;
                             repaint();
                         }
                     }
@@ -346,14 +357,20 @@ public class BanDoGame extends javax.swing.JPanel {
                     Point pointClick = new Point();
                     pointClick.x = ((evt.getX() - 10) / 25) * 25 + 10;
                     pointClick.y = ((evt.getY() - 10) / 25) * 25 + 10;
+                    if (ce.getLoaiDan() == Infomation.LOAI3) {
+                        pointClick = setLoaiDan3();
+                    }
                     if (clickedPoint(pointClick)) {
                         return;
                     }
-                    xuly.sendDienBan(pointClick);
-                    flags = false;
                     for (int i = 0; i < 5; i++) {
                         if (getNumber(pointClick, i, arrRival, rival)) {
                             trungPoint.add(pointClick);
+                            xulyLoaiDan(pointClick, true, true, i);
+                            xuly.sendDienBan(pointClick, ce.getLoaiDan(), flags);
+                            ce.addMoney(10);
+                            ce.setShoot();
+                            flags = false;
                             int count = 0;
                             for (int j = trungPoint.size() - 1; j >= 0; j--) {
                                 if (getNumber(trungPoint.get(j), i, arrRival, rival)) {
@@ -364,20 +381,25 @@ public class BanDoGame extends javax.swing.JPanel {
                                 for (int j = trungPoint.size() - 1; j >= 0; j--) {
                                     if (getNumber(trungPoint.get(j), i, arrRival, rival)) {
                                         trungPoint.remove(j);
-                                        client[i] = true;
                                     }
+                                    client[i] = true;
                                 }
-                                if (client[0] && client[1] && client[2] && client[3] && client[4]) {
-                                    ce.setArea("Bạn đã chiến thắng.");
-                                    setVictory();
-                                    flags = true;
-                                }
+                            }
+                            if (client[0] && client[1] && client[2] && client[3] && client[4]) {
+                                ce.setArea("Bạn đã chiến thắng.");
+                                setVictory();
+                                flags = true;
                             }
                             repaint();
                             break;
                         }
                         if (i == 4) {
                             truotPoint.add(pointClick);
+                            xulyLoaiDan(pointClick, true, false, -1);
+                            xuly.sendDienBan(pointClick, ce.getLoaiDan(), flags);
+                            ce.addMoney(10);
+                            ce.setShoot();
+                            flags = false;
                             repaint();
                         }
                     }
@@ -386,11 +408,96 @@ public class BanDoGame extends javax.swing.JPanel {
         }
     }
 
+    public Point setLoaiDan3() {
+        ArrayList<Point> arr = new ArrayList<Point>();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < length[i]; j++) {
+                if (arrImage[i] == 0) {
+                    arr.add(new Point(begin[i].x, begin[i].y + j * 30 * arrImage[i]));
+                } else {
+                    arr.add(new Point(begin[i].x + j * 30 * arrImage[i], begin[i].y));
+                }
+            }
+        }
+        arr.removeAll(trungPoint);
+        int x = Infomation.getRandom(arr.size());
+        return arr.get(x);
+    }
+
+    public void xulyLoaiDan(Point point, boolean isHost, boolean isHit, int number) {
+        switch (ce.getLoaiDan()) {
+            case Infomation.LOAI2:
+                if (isHost) {
+                    if (isHit) {
+                        for (int j = trungPoint.size() - 1; j >= 0; j--) {
+                            if (getNumber(trungPoint.get(j), number, arrRival, rival)) {
+                                trungPoint.remove(j);
+                            }
+                            client[number] = true;
+                        }
+                    }
+                } else {
+                    if (isHit) {
+                        for (int j = trungPoint.size() - 1; j >= 0; j--) {
+                            if (getNumber(trungPoint.get(j), number, arrImage, begin)) {
+                                trungPoint.remove(j);
+                            }
+                            host[number] = false;
+                        }
+                    }
+                }
+                break;
+            case Infomation.LOAI4:
+                if (isHost && isHit) {
+                    int x = Infomation.getRandom(150);
+                    ce.addMoney(x + 50);
+                }
+                break;
+            case Infomation.LOAI5:
+                if (!isHost) {
+                    if (isHit) {
+                        ce.setSoluotcam(3);
+                    } else {
+                        ce.setSoluotcam(1);
+                    }
+                }
+                break;
+            case Infomation.LOAI6:
+                if (isHost) {
+                }
+                break;
+            case Infomation.LOAI7:
+                if (isHost) {
+                    if (isHit) {
+                        int x = Infomation.getRandom(100) % 4;
+                        if (x == 0) {
+                            flags = true;
+                        }
+                    }
+                }
+                break;
+            case Infomation.LOAI8:
+                if (isHost) {
+                    if (!isHit) {
+                        ce.setSotrongso(3);
+                        ce.setTrongso(0.5f);
+                    }
+                } else {
+                    if (isHit) {
+                        ce.setSotrongso(3);
+                        ce.setTrongso(0.5f);
+                    }
+                }
+                break;
+        }
+    }
+
     public void setDiemBan(Point point) {
         flags = true;
         for (int i = 0; i < 5; i++) {
             if (getNumber(point, i, arrImage, begin)) {
                 trungPoint.add(point);
+                xulyLoaiDan(point, false, true, i);
                 int count = 0;
                 for (int j = trungPoint.size() - 1; j >= 0; j--) {
                     if (getNumber(trungPoint.get(j), i, arrImage, begin)) {
@@ -401,20 +508,21 @@ public class BanDoGame extends javax.swing.JPanel {
                     for (int j = trungPoint.size() - 1; j >= 0; j--) {
                         if (getNumber(trungPoint.get(j), i, arrImage, begin)) {
                             trungPoint.remove(j);
-                            host[i] = false;
                         }
+                        host[i] = false;
                     }
-                    if (!host[0] && !host[1] && !host[2] && !host[3] && !host[4]) {
-                        ce.setArea("Bạn đã thua.");
-                        setVictory();
-                        flags = false;
-                    }
+                }
+                if (!host[0] && !host[1] && !host[2] && !host[3] && !host[4]) {
+                    ce.setArea("Bạn đã thua.");
+                    setVictory();
+                    flags = false;
                 }
                 repaint();
                 break;
             }
             if (i == 4) {
                 truotPoint.add(point);
+                xulyLoaiDan(point, false, false, -1);
                 repaint();
             }
         }
@@ -426,6 +534,7 @@ public class BanDoGame extends javax.swing.JPanel {
         beginClient = false;
         beginHost = false;
         status = Infomation.NHANTHUA;
+        ce.resetMoney();
     }
     /*
      * Kiem tra xem diem do da duoc click hay chua
@@ -599,7 +708,7 @@ public class BanDoGame extends javax.swing.JPanel {
         if (client[4]) {
             g.drawImage(no5[arrRival[4]].getImage(), rival[4].x + XY5[arrRival[4]].x, rival[4].y + XY5[arrRival[4]].y, no5[arrRival[4]].getImage().getWidth(this), no5[arrRival[4]].getImage().getHeight(this), null);
         }
-        if (status==Infomation.NHANTHUA) {
+        if (status == Infomation.NHANTHUA) {
             if (!client[0]) {
                 g.drawImage(tau1[arrRival[0]].getImage(), rival[0].x + XY1[arrRival[0]].x, rival[0].y + XY1[arrRival[0]].y, tau1[arrRival[0]].getImage().getWidth(this), tau1[arrRival[0]].getImage().getHeight(this), null);
             }

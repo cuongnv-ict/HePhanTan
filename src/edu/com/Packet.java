@@ -45,15 +45,24 @@ public class Packet {
      * Mã hóa thông điệp tọa độ bắn
      */
 
-    public String setMsg(Point point) {
-        this.msg = String.valueOf(TOADO) + ":" + String.valueOf(point.x) + "-" + String.valueOf(point.y);
+    public String setMsg(Point point, int madan, boolean themluot) {
+        this.msg = String.valueOf(TOADO) + ":" + String.valueOf(point.x) + "-" + String.valueOf(point.y) + ":" + String.valueOf(madan) + ":" + String.valueOf(themluot);
         return this.msg;
     }
 
     public Point getPoint(String msg) {
-        String arr[] = msg.split(":", 2);
+        String arr[] = msg.split(":");
         arr = arr[1].split("-");
         return new Point(Integer.parseInt(arr[0]), Integer.parseInt(arr[1]));
+    }
+
+    public int getMadan(String msg) {
+        String arr[] = msg.split(":");
+        return  Integer.parseInt(arr[2]);
+    }
+    public boolean isThemLuot(String msg){
+          String arr[] = msg.split(":");
+        return  Boolean.parseBoolean(arr[3]);
     }
     /*
      * Mã hóa thông điệp tọa độ các tàu khi khởi tạo
@@ -85,8 +94,9 @@ public class Packet {
         this.msg = String.valueOf(DONGKETNOI);
         return this.msg;
     }
+
     public String setNhanThua() {
         this.msg = String.valueOf(NHANTHUA);
         return this.msg;
-    } 
+    }
 }

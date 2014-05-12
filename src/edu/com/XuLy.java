@@ -78,9 +78,9 @@ public class XuLy {
         }
     }
 
-    public void sendDienBan(Point point) {
+    public void sendDienBan(Point point,int madan,boolean themluot) {
         try {
-            out.writeBytes(data.setMsg(point) + "\n");
+            out.writeBytes(data.setMsg(point, madan, themluot) + "\n");
         } catch (IOException ex) {
             Logger.getLogger(XuLy.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -149,6 +149,8 @@ public class XuLy {
 
     public void recvToaDo(String msg) {
         Point point = data.getPoint(msg);
+        ce.setLoaiDan(data.getMadan(msg));
+        ce.setThemluot(data.isThemLuot(msg));
         bando.setDiemBan(point);
     }
 

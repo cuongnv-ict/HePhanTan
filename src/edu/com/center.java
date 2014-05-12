@@ -40,13 +40,51 @@ public class center extends javax.swing.JFrame {
     private Socket client = null;
     private Thread ts;
     private BanDoGame bando;
-    protected XuLy xuly;
+    private XuLy xuly;
+    private int money;
+    private int madan;
+    private float trongso;//Nhan tien thuong
+    private int sotrongso;
+    private boolean themluot;
+
+    public boolean isThemluot() {
+        return themluot;
+    }
+
+    public void setThemluot(boolean themluot) {
+        this.themluot = themluot;
+    }
+    public int getSotrongso() {
+        return sotrongso;
+    }
+
+    public void setSotrongso(int sotrongso) {
+        this.sotrongso = sotrongso;
+    }
+    private int soluotcam;
+
+    public float getTrongso() {
+        return trongso;
+    }
+
+    public void setTrongso(float trongso) {
+        this.trongso = trongso;
+    }
+
+    public int getSoluotcam() {
+        return soluotcam;
+    }
+
+    public void setSoluotcam(int soluotcam) {
+        this.soluotcam = soluotcam;
+    }
 
     public center() {
         initComponents();
         this.setResizable(false);
         this.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 400, Toolkit.getDefaultToolkit().getScreenSize().height / 2 - 300);
-//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        money = Infomation.DAN1;
+        madan = Infomation.LOAI1;
         xuly = null;
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -125,7 +163,7 @@ public class center extends javax.swing.JFrame {
         loai4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tien = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -369,8 +407,8 @@ public class center extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Số tiền :");
 
-        jTextField1.setEditable(false);
-        jTextField1.setText("100");
+        tien.setEditable(false);
+        tien.setText("100");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -405,7 +443,7 @@ public class center extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tien, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(batdau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -433,7 +471,7 @@ public class center extends javax.swing.JFrame {
                             .addComponent(loai4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(tien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(12, 12, 12)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -739,43 +777,134 @@ public class center extends javax.swing.JFrame {
 
     private void loai1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai1MouseClicked
         // TODO add your handling code here:
-        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan1.png")));
+        int y = Integer.parseInt(tien.getText());
+        int x = y - Infomation.DAN1 + money;
+        if (x >= 0) {
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan1.png")));
+            tien.setText(String.valueOf(x));
+            money = Infomation.DAN1;
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
+        }
+
     }//GEN-LAST:event_loai1MouseClicked
 
     private void loai2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai2MouseClicked
         // TODO add your handling code here:
-        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan2.png")));
+        int y = Integer.parseInt(tien.getText());
+        int x = y - Infomation.DAN2 + money;
+        if (x >= 0) {
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan2.png")));
+            tien.setText(String.valueOf(x));
+            money = Infomation.DAN2;
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_loai2MouseClicked
 
     private void loai3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai3MouseClicked
         // TODO add your handling code here:
-        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan3.png")));
+        int y = Integer.parseInt(tien.getText());
+        int x = y - Infomation.DAN3 + money;
+        if (x >= 0) {
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan3.png")));
+            tien.setText(String.valueOf(x));
+            money = Infomation.DAN3;
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_loai3MouseClicked
 
     private void loai4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai4MouseClicked
         // TODO add your handling code here:
-        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan4.png")));
+        int y = Integer.parseInt(tien.getText());
+        int x = y - Infomation.DAN4 + money;
+        if (x >= 0) {
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan4.png")));
+            tien.setText(String.valueOf(x));
+            money = Infomation.DAN4;
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_loai4MouseClicked
 
     private void loai5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai5MouseClicked
         // TODO add your handling code here:
-        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan5.png")));
+        int y = Integer.parseInt(tien.getText());
+        int x = y - Infomation.DAN5 + money;
+        if (x >= 0) {
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan5.png")));
+            tien.setText(String.valueOf(x));
+            money = Infomation.DAN5;
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_loai5MouseClicked
 
     private void loai6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai6MouseClicked
         // TODO add your handling code here:
-        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan6.png")));
+        int y = Integer.parseInt(tien.getText());
+        int x = y - Infomation.DAN6 + money;
+        if (x >= 0) {
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan6.png")));
+            tien.setText(String.valueOf(x));
+            money = Infomation.DAN6;
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_loai6MouseClicked
 
     private void loai7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai7MouseClicked
         // TODO add your handling code here:
-        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan7.png")));
+        int y = Integer.parseInt(tien.getText());
+        int x = y - Infomation.DAN7 + money;
+        if (x >= 0) {
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan7.png")));
+            tien.setText(String.valueOf(x));
+            money = Infomation.DAN7;
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_loai7MouseClicked
 
     private void loai8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai8MouseClicked
         // TODO add your handling code here:
-        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan8.png")));
+        int y = Integer.parseInt(tien.getText());
+        int x = y - Infomation.DAN8 + money;
+        if (x >= 0) {
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan8.png")));
+            tien.setText(String.valueOf(x));
+            money = Infomation.DAN8;
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_loai8MouseClicked
+    public void addMoney(int x) {
+        int y = Integer.parseInt(tien.getText());
+        if (sotrongso != 0) {
+            sotrongso--;
+            x = (int) (x * trongso);
+        }
+        tien.setText(String.valueOf(y + x));
+    }
+
+    public void resetMoney() {
+        tien.setText("100");
+    }
+
+    public void setShoot() {
+        money = Infomation.DAN1;
+        madan = Infomation.LOAI1;
+        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan1.png")));
+    }
+
+    public int getLoaiDan() {
+        return madan;
+    }
+
+    public void setLoaiDan(int loaidan) {
+        this.madan = loaidan;
+    }
 
     /**
      * @param args the command line arguments
@@ -835,7 +964,6 @@ public class center extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel loai1;
     private javax.swing.JLabel loai2;
     private javax.swing.JLabel loai3;
@@ -848,6 +976,7 @@ public class center extends javax.swing.JFrame {
     private javax.swing.JButton thietlap;
     private javax.swing.JButton thoat;
     private javax.swing.JButton thua;
+    private javax.swing.JTextField tien;
     private javax.swing.JPanel trungtam;
     private javax.swing.JPanel tuychon;
     // End of variables declaration//GEN-END:variables
