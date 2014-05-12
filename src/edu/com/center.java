@@ -46,41 +46,14 @@ public class center extends javax.swing.JFrame {
     private float trongso;//Nhan tien thuong
     private int sotrongso;
     private boolean themluot;
-
-    public boolean isThemluot() {
-        return themluot;
-    }
-
-    public void setThemluot(boolean themluot) {
-        this.themluot = themluot;
-    }
-    public int getSotrongso() {
-        return sotrongso;
-    }
-
-    public void setSotrongso(int sotrongso) {
-        this.sotrongso = sotrongso;
-    }
     private int soluotcam;
-
-    public float getTrongso() {
-        return trongso;
-    }
-
-    public void setTrongso(float trongso) {
-        this.trongso = trongso;
-    }
-
-    public int getSoluotcam() {
-        return soluotcam;
-    }
-
-    public void setSoluotcam(int soluotcam) {
-        this.soluotcam = soluotcam;
-    }
 
     public center() {
         initComponents();
+        trongso = 1;
+        sotrongso = 0;
+        themluot = false;
+        soluotcam = 0;
         this.setResizable(false);
         this.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 400, Toolkit.getDefaultToolkit().getScreenSize().height / 2 - 300);
         money = Infomation.DAN1;
@@ -408,7 +381,7 @@ public class center extends javax.swing.JFrame {
         jLabel8.setText("Số tiền :");
 
         tien.setEditable(false);
-        tien.setText("100");
+        tien.setText("10000");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -791,12 +764,20 @@ public class center extends javax.swing.JFrame {
 
     private void loai2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai2MouseClicked
         // TODO add your handling code here:
+        if(!bando.isFlags()){
+            return;
+        }
+        if (soluotcam > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
+            return;
+        }
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN2 + money;
         if (x >= 0) {
             danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan2.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN2;
+            madan = Infomation.LOAI2;
         } else {
             JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
         }
@@ -804,12 +785,20 @@ public class center extends javax.swing.JFrame {
 
     private void loai3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai3MouseClicked
         // TODO add your handling code here:
+        if(!bando.isFlags()){
+            return;
+        }
+       if (soluotcam > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
+            return;
+        }
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN3 + money;
         if (x >= 0) {
             danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan3.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN3;
+            madan = Infomation.LOAI3;
         } else {
             JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
         }
@@ -817,12 +806,20 @@ public class center extends javax.swing.JFrame {
 
     private void loai4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai4MouseClicked
         // TODO add your handling code here:
+        if(!bando.isFlags()){
+            return;
+        }
+        if (soluotcam > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
+            return;
+        }
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN4 + money;
         if (x >= 0) {
             danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan4.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN4;
+            madan = Infomation.LOAI4;
         } else {
             JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
         }
@@ -830,12 +827,20 @@ public class center extends javax.swing.JFrame {
 
     private void loai5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai5MouseClicked
         // TODO add your handling code here:
+        if(!bando.isFlags()){
+            return;
+        }
+        if (soluotcam > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
+            return;
+        }
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN5 + money;
         if (x >= 0) {
             danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan5.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN5;
+            madan = Infomation.LOAI5;
         } else {
             JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
         }
@@ -843,12 +848,20 @@ public class center extends javax.swing.JFrame {
 
     private void loai6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai6MouseClicked
         // TODO add your handling code here:
+        if(!bando.isFlags()){
+            return;
+        }
+        if (soluotcam > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
+            return;
+        }
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN6 + money;
         if (x >= 0) {
             danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan6.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN6;
+            madan = Infomation.LOAI6;
         } else {
             JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
         }
@@ -856,12 +869,20 @@ public class center extends javax.swing.JFrame {
 
     private void loai7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai7MouseClicked
         // TODO add your handling code here:
+        if(!bando.isFlags()){
+            return;
+        }
+        if (soluotcam > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
+            return;
+        }
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN7 + money;
         if (x >= 0) {
             danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan7.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN7;
+            madan = Infomation.LOAI7;
         } else {
             JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
         }
@@ -869,12 +890,20 @@ public class center extends javax.swing.JFrame {
 
     private void loai8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai8MouseClicked
         // TODO add your handling code here:
+        if(!bando.isFlags()){
+            return;
+        }
+        if (soluotcam > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
+            return;
+        }
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN8 + money;
         if (x >= 0) {
             danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan8.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN8;
+            madan = Infomation.LOAI8;
         } else {
             JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
         }
@@ -904,6 +933,38 @@ public class center extends javax.swing.JFrame {
 
     public void setLoaiDan(int loaidan) {
         this.madan = loaidan;
+    }
+
+    public boolean isThemluot() {
+        return themluot;
+    }
+
+    public void setThemluot(boolean themluot) {
+        this.themluot = themluot;
+    }
+
+    public int getSotrongso() {
+        return sotrongso;
+    }
+
+    public void setSotrongso(int sotrongso) {
+        this.sotrongso = sotrongso;
+    }
+
+    public float getTrongso() {
+        return trongso;
+    }
+
+    public void setTrongso(float trongso) {
+        this.trongso = trongso;
+    }
+
+    public int getSoluotcam() {
+        return soluotcam;
+    }
+
+    public void setSoluotcam(int soluotcam) {
+        this.soluotcam = soluotcam;
     }
 
     /**

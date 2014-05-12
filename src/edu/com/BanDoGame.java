@@ -311,6 +311,9 @@ public class BanDoGame extends javax.swing.JPanel {
                     if (clickedPoint(pointClick)) {
                         return;
                     }
+                    if (ce.getSoluotcam() > 0) {
+                        ce.setSoluotcam(ce.getSoluotcam() - 1);
+                    }
                     for (int i = 0; i < 5; i++) {
                         if (getNumber(pointClick, i, arrRival, rival)) {
                             trungPoint.add(pointClick);
@@ -363,6 +366,9 @@ public class BanDoGame extends javax.swing.JPanel {
                     if (clickedPoint(pointClick)) {
                         return;
                     }
+                    if (ce.getSoluotcam() > 0) {
+                        ce.setSoluotcam(ce.getSoluotcam() - 1);
+                    }
                     for (int i = 0; i < 5; i++) {
                         if (getNumber(pointClick, i, arrRival, rival)) {
                             trungPoint.add(pointClick);
@@ -412,10 +418,10 @@ public class BanDoGame extends javax.swing.JPanel {
         ArrayList<Point> arr = new ArrayList<Point>();
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < length[i]; j++) {
-                if (arrImage[i] == 0) {
-                    arr.add(new Point(begin[i].x, begin[i].y + j * 30 * arrImage[i]));
+                if (arrRival[i] == 0) {
+                    arr.add(new Point(rival[i].x, rival[i].y + j * 25 * arrRival[i]));
                 } else {
-                    arr.add(new Point(begin[i].x + j * 30 * arrImage[i], begin[i].y));
+                    arr.add(new Point(rival[i].x + j * 25 * arrRival[i], rival[i].y));
                 }
             }
         }
@@ -427,6 +433,7 @@ public class BanDoGame extends javax.swing.JPanel {
     public void xulyLoaiDan(Point point, boolean isHost, boolean isHit, int number) {
         switch (ce.getLoaiDan()) {
             case Infomation.LOAI2:
+                System.out.println("hoa loi");
                 if (isHost) {
                     if (isHit) {
                         for (int j = trungPoint.size() - 1; j >= 0; j--) {
@@ -478,7 +485,10 @@ public class BanDoGame extends javax.swing.JPanel {
                 break;
             case Infomation.LOAI8:
                 if (isHost) {
-                    if (!isHit) {
+                    if (isHit) {
+                        ce.setSotrongso(3);
+                        ce.setTrongso(2);
+                    } else {
                         ce.setSotrongso(3);
                         ce.setTrongso(0.5f);
                     }
