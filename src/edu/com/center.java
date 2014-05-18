@@ -304,7 +304,7 @@ public class center extends javax.swing.JFrame {
             }
         });
 
-        loai1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan1.png"))); // NOI18N
+        loai1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan1.png"))); // NOI18N
         loai1.setToolTipText("Loại đạn thường.\nGiá: 0$");
         loai1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -312,7 +312,7 @@ public class center extends javax.swing.JFrame {
             }
         });
 
-        loai2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan2.png"))); // NOI18N
+        loai2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan4.png"))); // NOI18N
         loai2.setToolTipText("Đạn hỏa lôi.\nKhi bắn chúng tàu sẽ khiến tàu đó chìm.\nGiá: 100$");
         loai2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -320,7 +320,7 @@ public class center extends javax.swing.JFrame {
             }
         });
 
-        loai3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan3.png"))); // NOI18N
+        loai3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan6.png"))); // NOI18N
         loai3.setToolTipText("Đạn mắt thần.Phát bắn chắc chắn chúng tàu địch.Giá: 100$");
         loai3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -330,7 +330,7 @@ public class center extends javax.swing.JFrame {
 
         danban.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan1.png"))); // NOI18N
 
-        loai4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan4.png"))); // NOI18N
+        loai4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan7.png"))); // NOI18N
         loai4.setToolTipText("Đạn tiền tài. Nếu bắn chúng tàu đích có xác suất nhận được từ 10$-200$. Giá 100$");
         loai4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -368,7 +368,6 @@ public class center extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(danban, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
                         .addComponent(tien, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))

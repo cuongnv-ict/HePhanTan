@@ -299,7 +299,6 @@
                               <Component id="danban" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="tien" min="-2" pref="85" max="-2" attributes="0"/>
@@ -406,7 +405,7 @@
             <Component class="javax.swing.JLabel" name="loai1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/edu/com/image/dan1.png"/>
+                  <Image iconType="3" name="/edu/com/image/cacLoaiDan/dan1.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Lo&#x1ea1;i &#x111;&#x1ea1;n th&#x1b0;&#x1edd;ng.&#xa;Gi&#xe1;: 0$"/>
               </Properties>
@@ -417,7 +416,7 @@
             <Component class="javax.swing.JLabel" name="loai2">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/edu/com/image/dan2.png"/>
+                  <Image iconType="3" name="/edu/com/image/cacLoaiDan/dan4.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n h&#x1ecf;a l&#xf4;i.&#xa;Khi b&#x1eaf;n ch&#xfa;ng t&#xe0;u s&#x1ebd; khi&#x1ebf;n t&#xe0;u &#x111;&#xf3; ch&#xec;m.&#xa;Gi&#xe1;: 100$"/>
               </Properties>
@@ -428,7 +427,7 @@
             <Component class="javax.swing.JLabel" name="loai3">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/edu/com/image/dan3.png"/>
+                  <Image iconType="3" name="/edu/com/image/cacLoaiDan/dan6.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n m&#x1eaf;t th&#x1ea7;n.Ph&#xe1;t b&#x1eaf;n ch&#x1eaf;c ch&#x1eaf;n ch&#xfa;ng t&#xe0;u &#x111;&#x1ecb;ch.Gi&#xe1;: 100$"/>
               </Properties>
@@ -446,7 +445,7 @@
             <Component class="javax.swing.JLabel" name="loai4">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/edu/com/image/dan4.png"/>
+                  <Image iconType="3" name="/edu/com/image/cacLoaiDan/dan7.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n ti&#x1ec1;n t&#xe0;i. N&#x1ebf;u b&#x1eaf;n ch&#xfa;ng t&#xe0;u &#x111;&#xed;ch c&#xf3; x&#xe1;c su&#x1ea5;t nh&#x1ead;n &#x111;&#x1b0;&#x1ee3;c t&#x1eeb; 10$-200$. Gi&#xe1; 100$"/>
               </Properties>
