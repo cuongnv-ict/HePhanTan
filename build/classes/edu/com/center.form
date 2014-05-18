@@ -280,29 +280,17 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="loai1" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="loai5" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="loai2" min="-2" pref="35" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="loai3" min="-2" pref="35" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="loai6" min="-2" pref="35" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="loai7" min="-2" pref="35" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="loai3" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="loai8" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="loai4" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="loai4" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="loai2" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
@@ -341,15 +329,9 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="loai2" max="32767" attributes="0"/>
-                                  <Component id="loai1" max="32767" attributes="0"/>
-                                  <Component id="loai3" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="loai4" alignment="1" max="32767" attributes="0"/>
-                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel8" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Component id="tien" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel8" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="tien" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           </Group>
@@ -361,19 +343,26 @@
                               <Component id="thoat" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="loai6" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="loai5" max="32767" attributes="0"/>
-                                      <Component id="loai8" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="loai7" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="danban" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jLabel7" alignment="1" max="32767" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="danban" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jLabel7" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="loai2" max="32767" attributes="0"/>
+                          <Component id="loai1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="loai3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="loai4" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -436,17 +425,6 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loai2MouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="loai5">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/edu/com/image/dan5.png"/>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n h&#x1ecf;a m&#xf9;. N&#x1ebf;u b&#x1eaf;n ch&#xfa;ng t&#xe0;u &#x111;&#x1ecb;ch s&#x1ebd; l&#xe0;m cho &#x111;&#x1ed1;i th&#x1ee7; kh&#xf4;ng d&#xf9;ng &#x111;&#x1b0;&#x1ee3;c c&#xe1;c lo&#x1ea1;i &#x111;&#x1ea1;n trong 3 l&#x1b0;&#x1ee3;t ti&#x1ebf;p theo, n&#x1ebf;u tr&#x1b0;&#x1ee3;t th&#xec; 1 l&#x1b0;&#x1ee3;t ti&#x1ebf;p theo. Gi&#xe1;: 100$"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loai5MouseClicked"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="loai3">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -458,45 +436,12 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loai3MouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="loai6">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/edu/com/image/dan6.png"/>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n li&#xea;n ho&#xe0;n. Khi b&#x1eaf;n c&#xf3; x&#xe1;c su&#x1ea5;t b&#x1eaf;n th&#xea;m t&#x1eeb; 0-3 v&#x1ecb; ch&#xed; xung quanh &#x111;i&#x1ec3;m b&#x1eaf;n. Gi&#xe1;: 100$"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loai6MouseClicked"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="danban">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/edu/com/image/dan1.png"/>
                 </Property>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="loai8">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/edu/com/image/dan8.png"/>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n th&#x1b0;&#x1edf;ng ph&#x1ea1;t. N&#x1ebf;u b&#x1eaf;n ch&#xfa;ng khi&#x1ebf;n ti&#x1ec1;n th&#x1b0;&#x1edf;ng 3 l&#x1b0;&#x1ee3;t b&#x1eaf;n ti&#x1ebf;p theo c&#x1ee7;a &#x111;&#x1ed1;i th&#x1ee7; gi&#x1ea3;m m&#x1ed9;t n&#x1eed;a,n&#x1ebf;u tr&#x1b0;&#x1ee3;t  khi&#x1ebf;n ti&#x1ec1;n th&#x1b0;&#x1edf;ng 3 l&#x1b0;&#x1ee3;t b&#x1eaf;n ti&#x1ebf;p theo c&#x1ee7;a b&#x1ea3;n th&#xe2;n gi&#x1ea3;m m&#x1ed9;t n&#x1eed;a. Gi&#xe1;: 100$"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loai8MouseClicked"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="loai7">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/edu/com/image/dan7.png"/>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n th&#xea;m l&#x1b0;&#x1ee3;t. N&#x1ebf;u b&#x1eaf;n ch&#xfa;ng t&#xe0;u &#x111;&#x1ecb;ch c&#xf3; x&#xe1;c su&#x1ea5;t t&#x1eeb; 0%-25% &#x111;&#x1b0;&#x1ee3;c b&#x1eaf;n th&#xea;m l&#x1ea7;n n&#x1eef;a. Gi&#xe1;: 100$"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loai7MouseClicked"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="loai4">
               <Properties>

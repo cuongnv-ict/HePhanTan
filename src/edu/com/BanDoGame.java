@@ -460,45 +460,6 @@ public class BanDoGame extends javax.swing.JPanel {
                     ce.addMoney(x + 50);
                 }
                 break;
-            case Infomation.LOAI5:
-                if (!isHost) {
-                    if (isHit) {
-                        ce.setSoluotcam(3);
-                    } else {
-                        ce.setSoluotcam(1);
-                    }
-                }
-                break;
-            case Infomation.LOAI6:
-                if (isHost) {
-                }
-                break;
-            case Infomation.LOAI7:
-                if (isHost) {
-                    if (isHit) {
-                        int x = Infomation.getRandom(100) % 4;
-                        if (x == 0) {
-                            flags = true;
-                        }
-                    }
-                }
-                break;
-            case Infomation.LOAI8:
-                if (isHost) {
-                    if (isHit) {
-                        ce.setSotrongso(3);
-                        ce.setTrongso(2);
-                    } else {
-                        ce.setSotrongso(3);
-                        ce.setTrongso(0.5f);
-                    }
-                } else {
-                    if (isHit) {
-                        ce.setSotrongso(3);
-                        ce.setTrongso(0.5f);
-                    }
-                }
-                break;
         }
     }
 

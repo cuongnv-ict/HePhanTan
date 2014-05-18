@@ -127,12 +127,8 @@ public class center extends javax.swing.JFrame {
         thoat = new javax.swing.JButton();
         loai1 = new javax.swing.JLabel();
         loai2 = new javax.swing.JLabel();
-        loai5 = new javax.swing.JLabel();
         loai3 = new javax.swing.JLabel();
-        loai6 = new javax.swing.JLabel();
         danban = new javax.swing.JLabel();
-        loai8 = new javax.swing.JLabel();
-        loai7 = new javax.swing.JLabel();
         loai4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -324,14 +320,6 @@ public class center extends javax.swing.JFrame {
             }
         });
 
-        loai5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan5.png"))); // NOI18N
-        loai5.setToolTipText("Đạn hỏa mù. Nếu bắn chúng tàu địch sẽ làm cho đối thủ không dùng được các loại đạn trong 3 lượt tiếp theo, nếu trượt thì 1 lượt tiếp theo. Giá: 100$");
-        loai5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loai5MouseClicked(evt);
-            }
-        });
-
         loai3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan3.png"))); // NOI18N
         loai3.setToolTipText("Đạn mắt thần.Phát bắn chắc chắn chúng tàu địch.Giá: 100$");
         loai3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -340,31 +328,7 @@ public class center extends javax.swing.JFrame {
             }
         });
 
-        loai6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan6.png"))); // NOI18N
-        loai6.setToolTipText("Đạn liên hoàn. Khi bắn có xác suất bắn thêm từ 0-3 vị chí xung quanh điểm bắn. Giá: 100$");
-        loai6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loai6MouseClicked(evt);
-            }
-        });
-
         danban.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan1.png"))); // NOI18N
-
-        loai8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan8.png"))); // NOI18N
-        loai8.setToolTipText("Đạn thưởng phạt. Nếu bắn chúng khiến tiền thưởng 3 lượt bắn tiếp theo của đối thủ giảm một nửa,nếu trượt  khiến tiền thưởng 3 lượt bắn tiếp theo của bản thân giảm một nửa. Giá: 100$");
-        loai8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loai8MouseClicked(evt);
-            }
-        });
-
-        loai7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan7.png"))); // NOI18N
-        loai7.setToolTipText("Đạn thêm lượt. Nếu bắn chúng tàu địch có xác suất từ 0%-25% được bắn thêm lần nữa. Giá: 100$");
-        loai7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loai7MouseClicked(evt);
-            }
-        });
 
         loai4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan4.png"))); // NOI18N
         loai4.setToolTipText("Đạn tiền tài. Nếu bắn chúng tàu đích có xác suất nhận được từ 10$-200$. Giá 100$");
@@ -388,24 +352,15 @@ public class center extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(102, 102, 102)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(loai1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loai5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(loai2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(loai3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(loai6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(loai7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(loai3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loai8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loai4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loai4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loai2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
@@ -437,14 +392,9 @@ public class center extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(loai2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loai1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loai3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loai4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -452,15 +402,20 @@ public class center extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(thoat))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(loai6)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(loai5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(loai8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(loai7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(danban, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(danban, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(loai2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loai1))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(loai3)
+                    .addComponent(loai4, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout trungtamLayout = new javax.swing.GroupLayout(trungtam);
@@ -824,90 +779,6 @@ public class center extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_loai4MouseClicked
-
-    private void loai5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai5MouseClicked
-        // TODO add your handling code here:
-        if(!bando.isFlags()){
-            return;
-        }
-        if (soluotcam > 0) {
-            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
-            return;
-        }
-        int y = Integer.parseInt(tien.getText());
-        int x = y - Infomation.DAN5 + money;
-        if (x >= 0) {
-            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan5.png")));
-            tien.setText(String.valueOf(x));
-            money = Infomation.DAN5;
-            madan = Infomation.LOAI5;
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_loai5MouseClicked
-
-    private void loai6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai6MouseClicked
-        // TODO add your handling code here:
-        if(!bando.isFlags()){
-            return;
-        }
-        if (soluotcam > 0) {
-            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
-            return;
-        }
-        int y = Integer.parseInt(tien.getText());
-        int x = y - Infomation.DAN6 + money;
-        if (x >= 0) {
-            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan6.png")));
-            tien.setText(String.valueOf(x));
-            money = Infomation.DAN6;
-            madan = Infomation.LOAI6;
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_loai6MouseClicked
-
-    private void loai7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai7MouseClicked
-        // TODO add your handling code here:
-        if(!bando.isFlags()){
-            return;
-        }
-        if (soluotcam > 0) {
-            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
-            return;
-        }
-        int y = Integer.parseInt(tien.getText());
-        int x = y - Infomation.DAN7 + money;
-        if (x >= 0) {
-            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan7.png")));
-            tien.setText(String.valueOf(x));
-            money = Infomation.DAN7;
-            madan = Infomation.LOAI7;
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_loai7MouseClicked
-
-    private void loai8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai8MouseClicked
-        // TODO add your handling code here:
-        if(!bando.isFlags()){
-            return;
-        }
-        if (soluotcam > 0) {
-            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
-            return;
-        }
-        int y = Integer.parseInt(tien.getText());
-        int x = y - Infomation.DAN8 + money;
-        if (x >= 0) {
-            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan8.png")));
-            tien.setText(String.valueOf(x));
-            money = Infomation.DAN8;
-            madan = Infomation.LOAI8;
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Bạn không đủ tiền.", null, JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_loai8MouseClicked
     public void addMoney(int x) {
         int y = Integer.parseInt(tien.getText());
         if (sotrongso != 0) {
@@ -1029,10 +900,6 @@ public class center extends javax.swing.JFrame {
     private javax.swing.JLabel loai2;
     private javax.swing.JLabel loai3;
     private javax.swing.JLabel loai4;
-    private javax.swing.JLabel loai5;
-    private javax.swing.JLabel loai6;
-    private javax.swing.JLabel loai7;
-    private javax.swing.JLabel loai8;
     private javax.swing.JTextField text;
     private javax.swing.JButton thietlap;
     private javax.swing.JButton thoat;
