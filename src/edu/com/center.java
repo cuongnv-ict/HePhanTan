@@ -328,7 +328,7 @@ public class center extends javax.swing.JFrame {
             }
         });
 
-        danban.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan1.png"))); // NOI18N
+        danban.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan1.png"))); // NOI18N
 
         loai4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan7.png"))); // NOI18N
         loai4.setToolTipText("Đạn tiền tài. Nếu bắn chúng tàu đích có xác suất nhận được từ 10$-200$. Giá 100$");
@@ -707,7 +707,7 @@ public class center extends javax.swing.JFrame {
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN1 + money;
         if (x >= 0) {
-            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan1.png")));
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/cacLoaiDan/dan1.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN1;
         } else {
@@ -728,7 +728,7 @@ public class center extends javax.swing.JFrame {
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN2 + money;
         if (x >= 0) {
-            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan2.png")));
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/cacLoaiDan/dan4.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN2;
             madan = Infomation.LOAI2;
@@ -749,7 +749,7 @@ public class center extends javax.swing.JFrame {
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN3 + money;
         if (x >= 0) {
-            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan3.png")));
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/cacLoaiDan/dan6.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN3;
             madan = Infomation.LOAI3;
@@ -770,7 +770,7 @@ public class center extends javax.swing.JFrame {
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN4 + money;
         if (x >= 0) {
-            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan4.png")));
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/cacLoaiDan/dan7.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN4;
             madan = Infomation.LOAI4;
