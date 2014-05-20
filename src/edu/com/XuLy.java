@@ -148,10 +148,8 @@ public class XuLy {
     }
 
     public void recvToaDo(String msg) {
-        System.out.println(msg);
         Point point = data.getPoint(msg);
         ce.setLoaiDan(data.getMadan(msg));
-        ce.setThemluot(data.isThemLuot(msg));
         bando.setDiemBan(point);
     }
 

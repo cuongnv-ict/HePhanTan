@@ -45,15 +45,10 @@ public class center extends javax.swing.JFrame {
     private int madan;
     private float trongso;//Nhan tien thuong
     private int sotrongso;
-    private boolean themluot;
-    private int soluotcam;
-
     public center() {
         initComponents();
         trongso = 1;
         sotrongso = 0;
-        themluot = false;
-        soluotcam = 0;
         this.setResizable(false);
         this.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 400, Toolkit.getDefaultToolkit().getScreenSize().height / 2 - 300);
         money = Infomation.DAN1;
@@ -345,7 +340,7 @@ public class center extends javax.swing.JFrame {
         jLabel8.setText("Số tiền :");
 
         tien.setEditable(false);
-        tien.setText("10000");
+        tien.setText("100");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -368,7 +363,6 @@ public class center extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(danban, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
                         .addComponent(tien, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -719,11 +713,7 @@ public class center extends javax.swing.JFrame {
 
     private void loai2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai2MouseClicked
         // TODO add your handling code here:
-        if(!bando.isFlags()){
-            return;
-        }
-        if (soluotcam > 0) {
-            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
+        if (!bando.isFlags()) {
             return;
         }
         int y = Integer.parseInt(tien.getText());
@@ -740,11 +730,7 @@ public class center extends javax.swing.JFrame {
 
     private void loai3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai3MouseClicked
         // TODO add your handling code here:
-        if(!bando.isFlags()){
-            return;
-        }
-       if (soluotcam > 0) {
-            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
+        if (!bando.isFlags()) {
             return;
         }
         int y = Integer.parseInt(tien.getText());
@@ -761,11 +747,7 @@ public class center extends javax.swing.JFrame {
 
     private void loai4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loai4MouseClicked
         // TODO add your handling code here:
-        if(!bando.isFlags()){
-            return;
-        }
-        if (soluotcam > 0) {
-            JOptionPane.showMessageDialog(rootPane, "Bạn bị cấm mua đạn trong " + soluotcam + " lượt bắn tới.");
+        if (!bando.isFlags()) {
             return;
         }
         int y = Integer.parseInt(tien.getText());
@@ -784,6 +766,9 @@ public class center extends javax.swing.JFrame {
         if (sotrongso != 0) {
             sotrongso--;
             x = (int) (x * trongso);
+            if (sotrongso == 0) {
+                trongso = 1;
+            }
         }
         tien.setText(String.valueOf(y + x));
     }
@@ -806,14 +791,6 @@ public class center extends javax.swing.JFrame {
         this.madan = loaidan;
     }
 
-    public boolean isThemluot() {
-        return themluot;
-    }
-
-    public void setThemluot(boolean themluot) {
-        this.themluot = themluot;
-    }
-
     public int getSotrongso() {
         return sotrongso;
     }
@@ -828,14 +805,6 @@ public class center extends javax.swing.JFrame {
 
     public void setTrongso(float trongso) {
         this.trongso = trongso;
-    }
-
-    public int getSoluotcam() {
-        return soluotcam;
-    }
-
-    public void setSoluotcam(int soluotcam) {
-        this.soluotcam = soluotcam;
     }
 
     /**

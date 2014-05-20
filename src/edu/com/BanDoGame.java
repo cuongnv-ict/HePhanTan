@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -34,6 +35,7 @@ public class BanDoGame extends javax.swing.JPanel {
     private ImageIcon anhnen;
     private ImageIcon trung;
     private ImageIcon truot;
+    private ImageIcon no;
     /*
      * Khởi tạo vị trí tàu và hướng tàu
      */
@@ -153,6 +155,7 @@ public class BanDoGame extends javax.swing.JPanel {
         anhnen = new ImageIcon(this.getClass().getResource("image/song cuon.png"));
         truot = new ImageIcon(this.getClass().getResource("image/truot.png"));
         trung = new ImageIcon(this.getClass().getResource("image/trung.png"));
+        no = new ImageIcon(this.getClass().getResource("image/no.gif"));
         status = Infomation.THIETLAP;
         isClient = Infomation.DEFINITE;
         serial = -1;
@@ -311,9 +314,6 @@ public class BanDoGame extends javax.swing.JPanel {
                     if (clickedPoint(pointClick)) {
                         return;
                     }
-                    if (ce.getSoluotcam() > 0) {
-                        ce.setSoluotcam(ce.getSoluotcam() - 1);
-                    }
                     for (int i = 0; i < 5; i++) {
                         if (getNumber(pointClick, i, arrRival, rival)) {
                             trungPoint.add(pointClick);
@@ -365,9 +365,6 @@ public class BanDoGame extends javax.swing.JPanel {
                     }
                     if (clickedPoint(pointClick)) {
                         return;
-                    }
-                    if (ce.getSoluotcam() > 0) {
-                        ce.setSoluotcam(ce.getSoluotcam() - 1);
                     }
                     for (int i = 0; i < 5; i++) {
                         if (getNumber(pointClick, i, arrRival, rival)) {
