@@ -330,7 +330,12 @@ public class BanDoGame extends javax.swing.JPanel {
                             trungPoint.add(pointClick);
                             xulyLoaiDan(pointClick, true, true, i);
                             xuly.sendDienBan(pointClick, ce.getLoaiDan(), flags);
-                            ce.addMoney(10);
+                            if(trungPoint.size()==1){
+                                ce.addMoney(50);
+                            }
+                            else{
+                                 ce.addMoney(10);
+                            }
                             ce.setShoot();
                             flags = false;
                             int count = 0;
@@ -345,6 +350,7 @@ public class BanDoGame extends javax.swing.JPanel {
                                         trungPoint.remove(j);
                                     }
                                     client[i] = true;
+                                    ce.addMoney(100);
                                 }
                             }
                             if (client[0] && client[1] && client[2] && client[3] && client[4]) {
@@ -382,7 +388,12 @@ public class BanDoGame extends javax.swing.JPanel {
                             trungPoint.add(pointClick);
                             xulyLoaiDan(pointClick, true, true, i);
                             xuly.sendDienBan(pointClick, ce.getLoaiDan(), flags);
-                            ce.addMoney(10);
+                              if(trungPoint.size()==1){
+                                ce.addMoney(50);
+                            }
+                            else{
+                                 ce.addMoney(10);
+                            }
                             ce.setShoot();
                             flags = false;
                             int count = 0;
@@ -397,6 +408,7 @@ public class BanDoGame extends javax.swing.JPanel {
                                         trungPoint.remove(j);
                                     }
                                     client[i] = true;
+                                    ce.addMoney(100);
                                 }
                             }
                             if (client[0] && client[1] && client[2] && client[3] && client[4]) {
@@ -441,7 +453,6 @@ public class BanDoGame extends javax.swing.JPanel {
     public void xulyLoaiDan(Point point, boolean isHost, boolean isHit, int number) {
         switch (ce.getLoaiDan()) {
             case Infomation.LOAI2:
-                System.out.println("hoa loi");
                 if (isHost) {
                     if (isHit) {
                         for (int j = trungPoint.size() - 1; j >= 0; j--) {
@@ -449,6 +460,7 @@ public class BanDoGame extends javax.swing.JPanel {
                                 trungPoint.remove(j);
                             }
                             client[number] = true;
+                            ce.addMoney(100);
                         }
                     }
                 } else {
@@ -464,8 +476,8 @@ public class BanDoGame extends javax.swing.JPanel {
                 break;
             case Infomation.LOAI4:
                 if (isHost && isHit) {
-                    int x = Infomation.getRandom(150);
-                    ce.addMoney(x + 50);
+                    int x = Infomation.getRandom(290);
+                    ce.addMoney(x + 10);
                 }
                 break;
         }

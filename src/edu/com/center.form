@@ -418,7 +418,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/edu/com/image/cacLoaiDan/dan4.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n h&#x1ecf;a l&#xf4;i.&#xa;Khi b&#x1eaf;n ch&#xfa;ng t&#xe0;u s&#x1ebd; khi&#x1ebf;n t&#xe0;u &#x111;&#xf3; ch&#xec;m.&#xa;Gi&#xe1;: 100$"/>
+                <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n h&#x1ecf;a l&#xf4;i.&#xa;Khi b&#x1eaf;n ch&#xfa;ng t&#xe0;u s&#x1ebd; khi&#x1ebf;n t&#xe0;u &#x111;&#xf3; ch&#xec;m.&#xa;Gi&#xe1;: 250$"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loai2MouseClicked"/>
@@ -429,7 +429,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/edu/com/image/cacLoaiDan/dan6.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n m&#x1eaf;t th&#x1ea7;n.Ph&#xe1;t b&#x1eaf;n ch&#x1eaf;c ch&#x1eaf;n ch&#xfa;ng t&#xe0;u &#x111;&#x1ecb;ch.Gi&#xe1;: 100$"/>
+                <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n m&#x1eaf;t th&#x1ea7;n.Ph&#xe1;t b&#x1eaf;n ch&#x1eaf;c ch&#x1eaf;n ch&#xfa;ng t&#xe0;u &#x111;&#x1ecb;ch.Gi&#xe1;: 200$"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loai3MouseClicked"/>
@@ -447,7 +447,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/edu/com/image/cacLoaiDan/dan7.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n ti&#x1ec1;n t&#xe0;i. N&#x1ebf;u b&#x1eaf;n ch&#xfa;ng t&#xe0;u &#x111;&#xed;ch c&#xf3; x&#xe1;c su&#x1ea5;t nh&#x1ead;n &#x111;&#x1b0;&#x1ee3;c t&#x1eeb; 10$-200$. Gi&#xe1; 100$"/>
+                <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ea1;n ti&#x1ec1;n t&#xe0;i. N&#x1ebf;u b&#x1eaf;n ch&#xfa;ng t&#xe0;u &#x111;&#xed;ch c&#xf3; x&#xe1;c su&#x1ea5;t nh&#x1ead;n &#x111;&#x1b0;&#x1ee3;c t&#x1eeb; 10$-300$. Gi&#xe1; 150$"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loai4MouseClicked"/>

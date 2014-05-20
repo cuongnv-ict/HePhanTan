@@ -43,12 +43,8 @@ public class center extends javax.swing.JFrame {
     private XuLy xuly;
     private int money;
     private int madan;
-    private float trongso;//Nhan tien thuong
-    private int sotrongso;
     public center() {
         initComponents();
-        trongso = 1;
-        sotrongso = 0;
         this.setResizable(false);
         this.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 400, Toolkit.getDefaultToolkit().getScreenSize().height / 2 - 300);
         money = Infomation.DAN1;
@@ -308,7 +304,7 @@ public class center extends javax.swing.JFrame {
         });
 
         loai2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan4.png"))); // NOI18N
-        loai2.setToolTipText("Đạn hỏa lôi.\nKhi bắn chúng tàu sẽ khiến tàu đó chìm.\nGiá: 100$");
+        loai2.setToolTipText("Đạn hỏa lôi.\nKhi bắn chúng tàu sẽ khiến tàu đó chìm.\nGiá: 250$");
         loai2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 loai2MouseClicked(evt);
@@ -316,7 +312,7 @@ public class center extends javax.swing.JFrame {
         });
 
         loai3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan6.png"))); // NOI18N
-        loai3.setToolTipText("Đạn mắt thần.Phát bắn chắc chắn chúng tàu địch.Giá: 100$");
+        loai3.setToolTipText("Đạn mắt thần.Phát bắn chắc chắn chúng tàu địch.Giá: 200$");
         loai3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 loai3MouseClicked(evt);
@@ -326,7 +322,7 @@ public class center extends javax.swing.JFrame {
         danban.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan1.png"))); // NOI18N
 
         loai4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan7.png"))); // NOI18N
-        loai4.setToolTipText("Đạn tiền tài. Nếu bắn chúng tàu đích có xác suất nhận được từ 10$-200$. Giá 100$");
+        loai4.setToolTipText("Đạn tiền tài. Nếu bắn chúng tàu đích có xác suất nhận được từ 10$-300$. Giá 150$");
         loai4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 loai4MouseClicked(evt);
@@ -763,13 +759,6 @@ public class center extends javax.swing.JFrame {
     }//GEN-LAST:event_loai4MouseClicked
     public void addMoney(int x) {
         int y = Integer.parseInt(tien.getText());
-        if (sotrongso != 0) {
-            sotrongso--;
-            x = (int) (x * trongso);
-            if (sotrongso == 0) {
-                trongso = 1;
-            }
-        }
         tien.setText(String.valueOf(y + x));
     }
 
@@ -780,7 +769,7 @@ public class center extends javax.swing.JFrame {
     public void setShoot() {
         money = Infomation.DAN1;
         madan = Infomation.LOAI1;
-        danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan1.png")));
+        danban.setIcon(new ImageIcon(this.getClass().getResource("image/cacLoaiDan/dan1.png")));
     }
 
     public int getLoaiDan() {
@@ -790,23 +779,6 @@ public class center extends javax.swing.JFrame {
     public void setLoaiDan(int loaidan) {
         this.madan = loaidan;
     }
-
-    public int getSotrongso() {
-        return sotrongso;
-    }
-
-    public void setSotrongso(int sotrongso) {
-        this.sotrongso = sotrongso;
-    }
-
-    public float getTrongso() {
-        return trongso;
-    }
-
-    public void setTrongso(float trongso) {
-        this.trongso = trongso;
-    }
-
     /**
      * @param args the command line arguments
      */

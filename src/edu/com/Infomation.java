@@ -19,9 +19,9 @@ public class Infomation {
     public static final int CLIENT = -1;
     public static final int DEFINITE = 0;
     public static final int DAN1 = 0;
-    public static final int DAN2 = 100;
-    public static final int DAN3 = 100;
-    public static final int DAN4 = 100;
+    public static final int DAN2 = 250;
+    public static final int DAN3 = 200;
+    public static final int DAN4 = 150;
     public static final int LOAI1 = 1;
     public static final int LOAI2 = 2;
     public static final int LOAI3 = 3;
