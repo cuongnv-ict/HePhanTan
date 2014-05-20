@@ -299,7 +299,7 @@ public class center extends javax.swing.JFrame {
             }
         });
 
-        loai1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan1.png"))); // NOI18N
+        loai1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan1.png"))); // NOI18N
         loai1.setToolTipText("Loại đạn thường.\nGiá: 0$");
         loai1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -307,7 +307,7 @@ public class center extends javax.swing.JFrame {
             }
         });
 
-        loai2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan2.png"))); // NOI18N
+        loai2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan4.png"))); // NOI18N
         loai2.setToolTipText("Đạn hỏa lôi.\nKhi bắn chúng tàu sẽ khiến tàu đó chìm.\nGiá: 100$");
         loai2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -315,7 +315,7 @@ public class center extends javax.swing.JFrame {
             }
         });
 
-        loai3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan3.png"))); // NOI18N
+        loai3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan6.png"))); // NOI18N
         loai3.setToolTipText("Đạn mắt thần.Phát bắn chắc chắn chúng tàu địch.Giá: 100$");
         loai3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -323,9 +323,9 @@ public class center extends javax.swing.JFrame {
             }
         });
 
-        danban.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan1.png"))); // NOI18N
+        danban.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan1.png"))); // NOI18N
 
-        loai4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/dan4.png"))); // NOI18N
+        loai4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/cacLoaiDan/dan7.png"))); // NOI18N
         loai4.setToolTipText("Đạn tiền tài. Nếu bắn chúng tàu đích có xác suất nhận được từ 10$-200$. Giá 100$");
         loai4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -702,7 +702,7 @@ public class center extends javax.swing.JFrame {
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN1 + money;
         if (x >= 0) {
-            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan1.png")));
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/cacLoaiDan/dan1.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN1;
         } else {
@@ -719,7 +719,7 @@ public class center extends javax.swing.JFrame {
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN2 + money;
         if (x >= 0) {
-            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan2.png")));
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/cacLoaiDan/dan4.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN2;
             madan = Infomation.LOAI2;
@@ -736,7 +736,7 @@ public class center extends javax.swing.JFrame {
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN3 + money;
         if (x >= 0) {
-            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan3.png")));
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/cacLoaiDan/dan6.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN3;
             madan = Infomation.LOAI3;
@@ -753,7 +753,7 @@ public class center extends javax.swing.JFrame {
         int y = Integer.parseInt(tien.getText());
         int x = y - Infomation.DAN4 + money;
         if (x >= 0) {
-            danban.setIcon(new ImageIcon(this.getClass().getResource("image/dan4.png")));
+            danban.setIcon(new ImageIcon(this.getClass().getResource("image/cacLoaiDan/dan7.png")));
             tien.setText(String.valueOf(x));
             money = Infomation.DAN4;
             madan = Infomation.LOAI4;

@@ -161,6 +161,7 @@ public class BanDoGame extends javax.swing.JPanel {
         serial = -1;
         rival = null;
         arrRival = null;
+        vuno.setVisible(false);
     }
 
     /**
@@ -171,6 +172,8 @@ public class BanDoGame extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        vuno = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,15 +190,23 @@ public class BanDoGame extends javax.swing.JPanel {
             }
         });
 
+        vuno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/com/image/no.gif"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 607, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(370, Short.MAX_VALUE)
+                .addComponent(vuno)
+                .addGap(212, 212, 212))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(vuno)
+                .addContainerGap(238, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -615,6 +626,7 @@ public class BanDoGame extends javax.swing.JPanel {
     }//GEN-LAST:event_formMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel vuno;
     // End of variables declaration//GEN-END:variables
     @Override
     public void paintComponent(Graphics g) {
@@ -695,6 +707,11 @@ public class BanDoGame extends javax.swing.JPanel {
         }
         for (int i = 0; i < trungPoint.size(); i++) {
             g.drawImage(trung.getImage(), trungPoint.get(i).x, trungPoint.get(i).y, 25, 25, null);
+            if(i == trungPoint.size() - 1){
+                vuno.setLocation(trungPoint.get(i).x, trungPoint.get(i).y);
+                vuno.setSize(24, 24);
+                vuno.setVisible(true);
+            }
         }
     }
 
