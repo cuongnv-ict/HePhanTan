@@ -526,6 +526,7 @@ public class BanDoGame extends javax.swing.JPanel {
         beginHost = false;
         status = Infomation.NHANTHUA;
         ce.resetMoney();
+        vuno.setVisible(false);
     }
     /*
      * Kiem tra xem diem do da duoc click hay chua
@@ -722,7 +723,8 @@ public class BanDoGame extends javax.swing.JPanel {
             if(i == trungPoint.size() - 1){
                 vuno.setLocation(trungPoint.get(i).x, trungPoint.get(i).y);
                 vuno.setSize(24, 24);
-                vuno.setVisible(true);
+                if(beginClient||beginHost)
+                    vuno.setVisible(true);
             }
         }
     }
